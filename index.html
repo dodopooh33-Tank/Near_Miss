@@ -8,10 +8,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
 
 :root{
-  --navy:#173b5d; --blue:#2e6f9e; --sky:#eaf4fb; --sky2:#f6fbfe;
-  --gold:#d2a64a; --ink:#263746; --muted:#708191; --white:#fff;
-  --line:#dce8f0; --green:#4f9273; --red:#b45c5c;
-  --shadow:0 12px 35px rgba(31,70,101,.10);
+  --navy:#15364A; --blue:#3F7C85; --sky:#E9F3F1; --sky2:#F7FAF8;
+  --gold:#C79B5B; --ink:#24343B; --muted:#74848A; --white:#fff;
+  --line:#DDE8E5; --green:#5D927D; --red:#B96A67;
+  --shadow:0 14px 38px rgba(28,58,70,.10);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -111,7 +111,6 @@ main{max-width:1100px;margin:0 auto;padding:32px 20px 70px}
   font:inherit;color:var(--ink);outline:none
 }
 .whys input:focus,.whys textarea:focus,.reflection textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #e8f3f9}
-.fishbone{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .bone{border:1px solid var(--line);border-radius:13px;padding:16px;background:#fbfdff}
 .bone h4{color:var(--navy);margin:0 0 10px}.bone label{display:block;color:#617485;margin:8px 0}
 .rank label{display:block;border:1px solid var(--line);background:#fbfdff;padding:12px 14px;border-radius:10px;margin:9px 0}
@@ -128,7 +127,254 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 @media(max-width:760px){
  .nav-inner{align-items:flex-start;flex-direction:column}.nav-links{width:100%;overflow:auto;flex-wrap:nowrap}
  .hero-inner{padding:45px 20px}.case-head{grid-template-columns:1fr}.fact-grid{grid-template-columns:1fr 1fr}
- .fishbone,.score-grid,.library{grid-template-columns:1fr}.connector{width:20px}.card{padding:20px}
+ .score-grid,.library{grid-template-columns:1fr}.connector{width:20px}.card{padding:20px}
+}
+
+.factor-bank{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.factor-card{border:1px solid var(--line);background:#fbfdff;border-radius:12px;padding:13px 14px;cursor:pointer;transition:.15s;text-align:left;font:inherit;color:var(--ink)}
+.factor-card:hover{border-color:var(--blue);background:#f1f8fc}.factor-card.assigned{opacity:.4;text-decoration:line-through;pointer-events:none}.factor-card.selected{border-color:var(--gold);box-shadow:0 0 0 3px #fbf2dc}
+.classify-box{display:none;margin:18px 0;padding:18px;border:1px solid #e5d3a5;background:#fffaf0;border-radius:14px}.classify-box.show{display:block}
+.category-buttons{display:flex;flex-wrap:wrap;gap:8px}.cat-btn{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 13px;font:inherit;color:var(--navy);cursor:pointer;font-weight:700}
+.analysis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}.analysis-col{background:#f8fbfd;border:1px solid var(--line);border-radius:13px;padding:15px;min-height:105px}.analysis-col h4{margin:0 0 9px;color:var(--navy)}
+.assigned-chip{display:inline-block;background:white;border:1px solid #cfe0ea;border-radius:999px;padding:6px 10px;margin:3px;font-size:13px;cursor:pointer}
+@media(max-width:760px){.factor-bank,.analysis-grid{grid-template-columns:1fr}}
+
+.lab-alert{
+ display:flex;align-items:center;gap:16px;margin:14px 0 4px;padding:16px 18px;
+ border:1px solid #efd7a5;background:#fff9ed;border-radius:14px
+}
+.lab-alert-icon{
+ width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+ background:#d9a441;color:white;font-weight:900;font-size:21px;flex:0 0 auto
+}
+.lab-alert-main{font-size:22px;font-weight:800;color:#8b5b12}
+.lab-alert-sub{font-size:13px;color:#7b6a4e;margin-top:3px}
+.action-ladder{display:grid;gap:9px;margin-top:18px}
+.action-level{
+ display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:center;
+ padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:#fbfdff
+}
+.action-level strong{color:var(--navy);font-size:13px}
+.action-level span{color:#617485;font-size:14px}
+.action-level.strong{border-color:#b9d8c8;background:#f3faf6}
+.action-level.medium{border-color:#d9e5ec;background:#f8fbfd}
+.action-level.weak{border-color:#ead8b5;background:#fffaf0}
+.expert-compare{
+ margin-top:18px;padding:16px 18px;border-radius:13px;
+ border:1px solid #cfe0ea;background:#f8fbfd;display:none
+}
+.expert-compare.show{display:block}
+
+.mindmap-wrap{margin-top:18px;padding:20px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fbfdff,#f4f9fc)}
+.mindmap-grid{display:grid;grid-template-columns:1fr 1.2fr 1fr;grid-template-rows:auto auto auto;gap:12px;align-items:stretch}
+.mm-center{grid-column:2;grid-row:2;background:var(--navy);color:white;border-radius:18px;padding:20px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:145px;box-shadow:0 10px 25px rgba(23,59,93,.16)}
+.mm-center small{color:#d5e5ef;letter-spacing:.12em}.mm-center strong{font-size:19px;margin-top:7px}
+.mm-domain{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;min-height:150px}
+.mm-domain h4{margin:0 0 5px;color:var(--navy)}.mm-domain p{margin:0 0 10px;color:var(--muted);font-size:12px;line-height:1.5}
+.mm-people{grid-column:2;grid-row:1}.mm-process{grid-column:3;grid-row:2}.mm-system{grid-column:2;grid-row:3}.mm-communication{grid-column:1;grid-row:2}
+.mm-domain textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font:inherit;resize:vertical;min-height:60px;background:#fbfdff}
+.mm-prompt{display:inline-block;font-size:11px;font-weight:800;color:var(--blue);background:var(--sky);border-radius:999px;padding:5px 8px;margin-bottom:8px}
+.mm-reflect{margin-top:16px;background:white;border:1px solid var(--line);border-radius:14px;padding:16px}
+.mm-reflect textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit;background:#fbfdff}
+.mm-expert{display:none;margin-top:18px}.mm-expert.show{display:block}
+.mm-expert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.mm-expert-item{border:1px solid var(--line);background:white;border-radius:12px;padding:13px}
+.mm-expert-item b{display:block;color:var(--navy);margin-bottom:5px}
+@media(max-width:760px){
+ .mindmap-grid{display:flex;flex-direction:column}
+ .mm-center{order:-1;min-height:auto}
+ .mm-expert-grid{grid-template-columns:1fr}
+}
+
+.micro-card{margin:16px 0;padding:18px;border:1px solid #cfe0ea;background:#f7fbfd;border-radius:15px}
+.micro-card .micro-label{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--blue);margin-bottom:7px}
+.micro-card h4{margin:0 0 8px;color:var(--navy);font-size:18px}.micro-card p{margin:5px 0;line-height:1.75}
+.case-shell{max-width:980px;margin:auto}.decision-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.decision-grid button{min-height:62px}
+@media(max-width:760px){.decision-grid{grid-template-columns:1fr}}
+
+.path-banner{margin:0 0 20px;padding:16px 18px;border:1px solid #cfe0ea;background:#f7fbfd;border-radius:15px}
+.path-banner b{color:var(--navy)}.path-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.path-step{font-size:12px;font-weight:800;padding:7px 10px;border-radius:999px;background:white;border:1px solid var(--line);color:#607789}
+.path-step.current{background:var(--navy);color:white;border-color:var(--navy)}.path-arrow{color:#9aacb8}
+.lock-note{font-size:12px;color:#7b8c99;margin-top:9px;line-height:1.55}
+.lib-card.locked{opacity:.68}.lib-card.locked .btn{cursor:not-allowed}
+.complete-badge{display:none;margin-left:6px;font-size:11px;font-weight:900;color:#397256;background:#edf8f1;padding:5px 8px;border-radius:999px}
+.complete-badge.show{display:inline-block}
+
+.why-stack{display:grid;gap:10px;margin-top:14px}.why-block{border:1px solid var(--line);border-radius:13px;background:#fbfdff;padding:13px}
+.why-block .why-num{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--blue);margin-bottom:5px}
+.why-block label{display:block;color:var(--navy);font-weight:700;line-height:1.55;margin-bottom:8px}
+.why-block textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font:inherit;resize:vertical;background:white}
+.why-stack.independent .why-block label{font-weight:600;color:#536b7a}
+
+/* ===== v0.11 visual refinement layer ===== */
+body{
+  background:
+    radial-gradient(circle at 15% 0%,rgba(63,124,133,.08),transparent 28%),
+    linear-gradient(180deg,#FBFCFA 0%,#F1F6F4 100%);
+}
+.topbar{height:4px;background:linear-gradient(90deg,#15364A 0%,#3F7C85 54%,#C79B5B 100%)}
+nav{
+  background:rgba(252,253,251,.92);
+  border-bottom:1px solid rgba(221,232,229,.92);
+  box-shadow:0 8px 24px rgba(28,58,70,.05)
+}
+.logo-mark{
+  background:linear-gradient(145deg,#15364A,#2E5B68);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 8px 20px rgba(21,54,74,.20)
+}
+.nav-links button{transition:.2s ease}
+.nav-links button:hover,.nav-links button.active{
+  background:#E7F1EF;color:#15364A;
+  box-shadow:inset 0 0 0 1px rgba(63,124,133,.10)
+}
+.hero{
+  background:
+    radial-gradient(circle at 82% 32%,rgba(199,155,91,.22),transparent 25%),
+    radial-gradient(circle at 12% 86%,rgba(104,158,161,.17),transparent 32%),
+    linear-gradient(135deg,#15364A 0%,#245664 58%,#3F7C85 100%);
+}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:28px 28px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent);
+  pointer-events:none
+}
+.hero h1{letter-spacing:-.025em;text-shadow:0 10px 28px rgba(0,0,0,.12)}
+.hero p{color:#E6F0F0}
+.hero-meta .pill{
+  border-color:rgba(255,255,255,.22);
+  background:rgba(255,255,255,.085);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)
+}
+.section-title .en{color:#A47B42;font-weight:800}
+.section-title h2{letter-spacing:.015em}
+.card,.lib-card{
+  border:1px solid rgba(213,227,223,.95);
+  box-shadow:0 14px 35px rgba(36,67,78,.075);
+}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(252,253,251,.98));
+}
+.lib-card{
+  position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.lib-card:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,#3F7C85,#87AFAD)
+}
+.lib-card:hover{
+  transform:translateY(-4px);
+  border-color:#C7DBD6;
+  box-shadow:0 20px 42px rgba(36,67,78,.12)
+}
+.lib-card.locked:hover{transform:none;box-shadow:var(--shadow)}
+.case-tag{
+  background:#EAF3F0;color:#2F6F75;border:1px solid #D6E7E2
+}
+.btn{
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+  letter-spacing:.01em
+}
+.btn.primary{
+  background:linear-gradient(135deg,#15364A,#2B6170);
+  box-shadow:0 8px 20px rgba(21,54,74,.14)
+}
+.btn.primary:hover{background:linear-gradient(135deg,#1B4259,#397582);transform:translateY(-1px)}
+.btn.secondary{background:#EDF5F2;color:#224D55;border:1px solid #D9E8E4}
+.btn.secondary:hover{background:#E4F0EC;transform:translateY(-1px)}
+.option{
+  border-color:#D9E7E3;background:linear-gradient(180deg,#FFFFFF,#FAFCFB);
+  box-shadow:0 3px 10px rgba(30,65,75,.035)
+}
+.option:hover{
+  border-color:#72A5A4;background:#F3F9F7;
+  box-shadow:0 8px 18px rgba(63,124,133,.08)
+}
+.fact{
+  background:linear-gradient(180deg,#F8FBF9,#F3F8F6);
+  border-color:#DDE9E6
+}
+.fact b{letter-spacing:.04em}
+.stepper{padding-top:3px}
+.dot{border-color:#C7DAD5;color:#6E898B;background:#FCFDFC}
+.step.done .dot,.step.current .dot{
+  background:linear-gradient(145deg,#15364A,#3F7C85);
+  border-color:#15364A
+}
+.step.current .dot{box-shadow:0 0 0 5px rgba(63,124,133,.13)}
+.connector{background:#D6E5E1}.step.done .connector{background:#6D9F9E}
+.feedback.good{background:#EFF8F3;border-color:#CAE5D6}
+.feedback.warn{background:#FFF8EA;border-color:#E9D7AF}
+.micro-card{
+  background:linear-gradient(180deg,#F6FAF8,#EEF6F3);
+  border-color:#D4E5E0;
+  box-shadow:inset 4px 0 0 #6D9F9E
+}
+.micro-card .micro-label{color:#39777C}
+.path-banner{
+  background:linear-gradient(135deg,#F7FBF9,#EEF6F3);
+  border-color:#D7E7E2
+}
+.path-step.current{background:#15364A;border-color:#15364A}
+.lab-alert{
+  background:linear-gradient(180deg,#FFF9EE,#FFF6E5);
+  border-color:#E9D4A4
+}
+.lab-alert-icon{background:linear-gradient(145deg,#C79B5B,#B7803E);box-shadow:0 5px 14px rgba(183,128,62,.18)}
+.lab-alert-main{color:#8B5C22}
+.mindmap-wrap{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(63,124,133,.055),transparent 34%),
+    linear-gradient(180deg,#FAFCFB,#F2F7F5);
+  border-color:#D8E7E3
+}
+.mm-center{
+  background:
+    radial-gradient(circle at 80% 10%,rgba(199,155,91,.18),transparent 40%),
+    linear-gradient(145deg,#15364A,#2A5B67);
+  box-shadow:0 14px 30px rgba(21,54,74,.18)
+}
+.mm-domain{
+  border-color:#D7E6E2;
+  box-shadow:0 6px 15px rgba(33,70,79,.045)
+}
+.mm-domain h4{font-size:17px}
+.mm-prompt{background:#E8F2EF;color:#39747A}
+.why-block{
+  border-color:#D9E7E3;
+  box-shadow:0 4px 12px rgba(31,68,77,.035)
+}
+.why-block .why-num{color:#39777C}
+.rank label{
+  transition:.16s ease;border-color:#D9E7E3;
+  box-shadow:0 3px 10px rgba(30,65,75,.03)
+}
+.rank label:hover{background:#F3F9F7;border-color:#8CB3B1}
+.action-level.strong{background:#F0F8F3;border-color:#C3DFD0}
+.action-level.medium{background:#F5F9F8;border-color:#D5E4E0}
+.action-level.weak{background:#FFF9EF;border-color:#E7D8B8}
+footer{
+  background:linear-gradient(135deg,#15364A,#214F5C);
+  border-top:1px solid rgba(255,255,255,.06)
+}
+textarea,input{
+  transition:border-color .16s ease,box-shadow .16s ease,background .16s ease
+}
+textarea:focus,input:focus{
+  border-color:#6D9F9E!important;
+  box-shadow:0 0 0 3px rgba(63,124,133,.10)!important;
+  background:#fff!important;outline:none
+}
+.complete-badge{
+  color:#356D57;background:#ECF6F0;border:1px solid #D3E8DB
+}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
 </style>
 </head>
@@ -141,7 +387,7 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
    <div><strong>Radiology Safety Lab</strong><small>PATIENT SAFETY LEARNING</small></div>
   </div>
   <div class="nav-links">
-   <button class="active" data-sec="home" onclick="switchSection('home')">案例庫</button><button data-sec="case" onclick="switchSection('case')">案例學習</button>
+   <button class="active" data-sec="home" onclick="switchSection('home')">案例學習</button>
    <button data-sec="library" onclick="switchSection('library')">學習資源</button>
    <button data-sec="about" onclick="switchSection('about')">學習架構</button>
   </div>
@@ -150,38 +396,47 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 
 <header class="hero">
  <div class="hero-inner">
-  <div class="kicker">RADIOLOGY · PATIENT SAFETY · SYSTEM THINKING</div>
+  <div class="kicker">RADIOLOGY · PATIENT SAFETY · SYSTEMS THINKING · REFLECTION</div>
   <h1>Learning from <span>Safety Events</span></h1>
   <p>從臨床安全事件中，練習風險辨識、資訊搜尋、臨床決策、根本原因分析與系統改善。重點不是找出「誰犯錯」，而是理解「系統為什麼允許風險接近病人」。</p>
-  <div class="hero-meta"><span class="pill">Case-based Learning</span><span class="pill">5 Whys</span><span class="pill">Fishbone Analysis</span><span class="pill">Reflection</span></div>
+  <div class="hero-meta"><span class="pill">Case-based Learning</span><span class="pill">5 Whys</span><span class="pill">Safety Mind Map</span><span class="pill">Reflection</span></div>
  </div>
 </header>
 
 
 <main>
 <section id="home" class="section active">
- <div class="section-title"><div class="en">CASE LIBRARY</div><h2>Radiology Safety Lab</h2><p>選擇一個病人安全情境，進入逐步揭露式案例學習。</p></div>
- <div class="library">
+ <div class="section-title"><div class="en">CASE-BASED LEARNING</div><h2>案例學習路徑</h2><p>依序完成三個病人安全情境，從引導分析逐步進入獨立反思。</p></div>
+ <div class="path-banner">
+  <b>建議學習順序｜Scaffolded Learning Path</b>
+  <div class="path-steps">
+    <span class="path-step current">01 引導學習</span><span class="path-arrow">→</span>
+    <span class="path-step">02 支持練習</span><span class="path-arrow">→</span>
+    <span class="path-step">03 獨立分析</span>
+  </div>
+  <div class="lock-note">第一次使用建議依 Case 01 → 02 → 03 完成。完成前一案例後，下一案例才會開放；同一瀏覽器會記住完成進度。</div>
+ </div>
+<div class="library">
   <div class="lib-card">
-   <div class="icon">🩻</div><span class="case-tag">CASE 01 · AVAILABLE</span>
+   <div class="icon">🩻</div><span class="case-tag">CASE 01 · START HERE</span><span id="done1" class="complete-badge">COMPLETED</span>
    <h3>急診 CT：最後一道防線</h3>
    <p>從資訊搜尋、事件辨識到系統改善，練習對比劑相關病人安全決策。</p>
-   <p class="note">Focus：Risk recognition · Event classification · System thinking</p>
+   <p class="note">Level：Guided Practice｜Focus：Risk recognition · Event classification · System thinking</p>
    <button class="btn primary" onclick="startCase()">Start Case →</button>
   </div>
-  <div class="lib-card">
-   <div class="icon">🧲</div><span class="case-tag">CASE 02 · COMING SOON</span>
-   <h3>MRI Safety Screening</h3>
-   <p>植入物資訊不完整時，如何辨識風險並升級處理。</p>
-   <p class="note">Focus：Safety screening · Escalation · Communication</p>
-   <button class="btn secondary" disabled>Coming Soon</button>
+  <div id="case2Card" class="lib-card locked">
+   <div class="icon">☢️</div><span class="case-tag">CASE 02 · UNLOCK AFTER CASE 01</span><span id="done2" class="complete-badge">COMPLETED</span>
+   <h3>一般攝影：可能懷孕資訊</h3>
+   <p>病人進入檢查流程後才提及月經延遲。練習如何取得關鍵安全資訊、溝通與依流程確認。</p>
+   <p class="note">Level：Supported Practice｜Focus：Risk screening · Communication · Uncertainty</p>
+   <button id="case2Btn" class="btn secondary" onclick="startCase2()">🔒 Complete Case 01 First</button>
   </div>
-  <div class="lib-card">
-   <div class="icon">🧍</div><span class="case-tag">CASE 03 · COMING SOON</span>
+  <div id="case3Card" class="lib-card locked">
+   <div class="icon">🧍</div><span class="case-tag">CASE 03 · UNLOCK AFTER CASE 02</span><span id="done3" class="complete-badge">COMPLETED</span>
    <h3>Wrong Patient / Wrong Exam</h3>
    <p>從身分確認與流程防呆，分析錯誤如何穿越多層防線。</p>
-   <p class="note">Focus：Human factors · Workflow · RCA</p>
-   <button class="btn secondary" disabled>Coming Soon</button>
+   <p class="note">Level：Independent Practice｜Focus：Identification · Verification · System defenses</p>
+   <button id="case3Btn" class="btn secondary" onclick="startCase3()">🔒 Complete Case 02 First</button>
   </div>
  </div>
 </section>
@@ -192,7 +447,7 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 
  <div class="card case-head">
   <div>
-   <span class="case-tag">CASE 01 · CONTRAST SAFETY</span>
+   <span class="case-tag">CASE 01 · CONTRAST SAFETY · v1</span>
    <h3>急診 CT：最後一道防線</h3>
    <p>你是急診 CT 當班放射師。病人已送抵 CT 室準備接受含碘對比劑檢查。你會如何處理接下來逐步出現的資訊？</p>
   </div>
@@ -224,12 +479,12 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
   <div id="st2" class="stage">
    <div class="stage-label">STEP 02 · EVENT CLASSIFICATION</div><h3>新的安全關鍵資訊出現</h3>
    <div class="fact-grid">
-    <div class="fact"><b>eGFR</b><span style="color:#b78023;font-size:22px">24 mL/min/1.73m²</span></div>
+    <div class="fact"><b>Creatinine</b><span style="color:#b78023;font-size:22px">2.3 mg/dL ↑</span></div>
     <div class="fact"><b>對比劑</b><span>尚未注射</span></div>
     <div class="fact"><b>發現時間</b><span>病人已在 CT table</span></div>
     <div class="fact"><b>Patient Harm</b><span>None</span></div>
    </div>
-   <p class="note">本案例重點為「高風險資訊直到檢查前才被發現」，並非將單一 eGFR 數值直接等同於絕對禁忌。</p>
+   <p class="note">本案例重點為「高風險資訊直到檢查前才被發現」，並非將單一 單一 Creatinine 數值直接等同於絕對禁忌。</p>
    <h3 style="font-size:19px;margin-top:22px">你如何分類這個事件？</h3>
    <div class="options">
     <button class="option" onclick="classify(false)">Adverse Event</button><button class="option" onclick="classify(false)">Sentinel Event</button>
@@ -251,7 +506,7 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
   </div>
 
   <div id="st4" class="stage">
-   <div class="stage-label">STEP 04 · ROOT CAUSE THINKING</div><h3>5 Whys：把問題往系統層次追問</h3>
+   <div class="stage-label">STEP 04 · ASK WHY</div><h3>5 Whys：把問題往系統層次追問</h3>
    <div class="whys">
     <input placeholder="Why 1｜為什麼病人已到 CT 才發現風險？">
     <input placeholder="Why 2｜為什麼排程前沒有攔截？">
@@ -263,25 +518,91 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
   </div>
 
   <div id="st5" class="stage">
-   <div class="stage-label">STEP 05 · FISHBONE ANALYSIS</div><h3>哪些因素可能共同造成這次 Near Miss？</h3>
-   <div class="fishbone">
-    <div class="bone"><h4>People｜人員</h4><label><input type="checkbox"> 工作負荷</label><label><input type="checkbox"> 經驗與訓練差異</label></div>
-    <div class="bone"><h4>Process｜流程</h4><label><input type="checkbox"> 排程前缺少必要確認</label><label><input type="checkbox"> SOP 節點不明確</label></div>
-    <div class="bone"><h4>System｜系統</h4><label><input type="checkbox"> 關鍵檢驗資訊未整合</label><label><input type="checkbox"> 無風險提示機制</label></div>
-    <div class="bone"><h4>Communication｜溝通</h4><label><input type="checkbox"> ER ↔ CT 資訊傳遞不足</label><label><input type="checkbox"> 缺乏結構化 handoff</label></div>
+   <div class="stage-label">STEP 05 · SAFETY REFLECTION MIND MAP</div>
+   <h3>從不同面向重新思考這次事件</h3>
+   <p class="note">延續剛才的 5 Whys，不需要找出唯一的「根本原因」。請以事件為中心，從人員、流程、系統與溝通四個面向整理可能的 contributing factors。</p>
+
+   <div class="mindmap-wrap">
+    <div class="mindmap-grid">
+      <div class="mm-domain mm-people">
+        <span class="mm-prompt">PEOPLE</span><h4>人員</h4>
+        <p>工作負荷、知識、經驗或注意力是否可能影響事件？</p>
+        <textarea id="mmPeople" placeholder="例如：工作負荷增加…"></textarea>
+      </div>
+
+      <div class="mm-domain mm-communication">
+        <span class="mm-prompt">COMMUNICATION</span><h4>溝通</h4>
+        <p>ER、CT 或醫療團隊之間是否存在資訊落差？</p>
+        <textarea id="mmCommunication" placeholder="寫下你的觀察…"></textarea>
+      </div>
+
+      <div class="mm-center">
+        <small>SAFETY EVENT</small>
+        <strong>Creatinine 異常資訊<br>直到 CT 室才被辨識</strong>
+      </div>
+
+      <div class="mm-domain mm-process">
+        <span class="mm-prompt">PROCESS</span><h4>流程</h4>
+        <p>哪一個工作節點原本有機會更早攔截風險？</p>
+        <textarea id="mmProcess" placeholder="寫下你的觀察…"></textarea>
+      </div>
+
+      <div class="mm-domain mm-system">
+        <span class="mm-prompt">SYSTEM</span><h4>系統</h4>
+        <p>資訊是否在正確的時間、正確的位置被主動呈現？</p>
+        <textarea id="mmSystem" placeholder="寫下你的觀察…"></textarea>
+      </div>
+    </div>
+
+    <div class="mm-reflect">
+      <div class="stage-label">PRIORITIZE</div>
+      <h4 style="color:var(--navy);margin:7px 0 8px">如果只能選一項，你認為最重要的 contributing factor 是什麼？</h4>
+      <textarea id="mmPriority" rows="2" placeholder="請寫下最重要的因素，以及你選擇它的原因。"></textarea>
+    </div>
    </div>
-   <div class="actions"><button class="btn primary" onclick="stage(6)">提出改善措施 →</button></div>
+
+   <div id="mmFeedback" class="feedback"></div>
+
+   <div id="mmExpert" class="mm-expert card" style="box-shadow:none">
+      <div class="stage-label">EXPERT PERSPECTIVE</div>
+      <h3 style="font-size:20px">一個事件可能同時受到多個面向影響</h3>
+      <div class="mm-expert-grid">
+        <div class="mm-expert-item"><b>People｜人員</b>工作負荷與人員經驗可能影響資訊確認，但不宜只停留在「更小心」。</div>
+        <div class="mm-expert-item"><b>Process｜流程</b>排程或送檢前是否存在明確的安全資訊確認節點。</div>
+        <div class="mm-expert-item"><b>System｜系統</b>Creatinine 異常等關鍵資訊是否能在決策時點被主動呈現或提示。</div>
+        <div class="mm-expert-item"><b>Communication｜溝通</b>ER 與 CT 之間是否有一致、結構化的關鍵資訊交接方式。</div>
+      </div>
+      <p class="note" style="margin-top:12px">這張圖的目的不是進行正式事件調查，而是協助你把 5 Whys 的縱向追問，轉化成多面向的安全反思。</p>
+   </div>
+
+   <div class="actions">
+     <button class="btn secondary" onclick="reviewMindMap()">完成我的心智圖</button>
+     <button id="mindmapNext" class="btn primary hidden" onclick="stage(6)">提出改善措施 →</button>
+   </div>
   </div>
 
   <div id="st6" class="stage">
-   <div class="stage-label">STEP 06 · CORRECTIVE ACTION</div><h3>哪一項措施更能降低事件再次發生？</h3>
+   <div class="stage-label">STEP 06 · CORRECTIVE ACTION</div>
+   <h3>哪一項措施更能降低事件再次發生？</h3>
+   <p class="note">先選一個你最優先採取的介入，再查看介入強度比較。</p>
    <div class="rank">
-    <label><input type="radio" name="fix" value="1"> 提醒所有人員下次更小心</label>
-    <label><input type="radio" name="fix" value="2"> 再安排一次教育訓練</label>
-    <label><input type="radio" name="fix" value="3"> 增加檢查前 checklist</label>
-    <label><input type="radio" name="fix" value="4"> 系統自動呈現近期關鍵檢驗資訊與風險提示</label>
-    <label><input type="radio" name="fix" value="5"> 高風險條件觸發必要確認流程／forcing function</label>
+    <label><input type="radio" name="fix" value="1" onchange="showActionDebrief()"> 提醒所有人員下次更小心</label>
+    <label><input type="radio" name="fix" value="2" onchange="showActionDebrief()"> 再安排一次教育訓練</label>
+    <label><input type="radio" name="fix" value="3" onchange="showActionDebrief()"> 增加檢查前 checklist</label>
+    <label><input type="radio" name="fix" value="4" onchange="showActionDebrief()"> 系統自動呈現近期 Creatinine 異常警示與必要資訊</label>
+    <label><input type="radio" name="fix" value="5" onchange="showActionDebrief()"> 高風險條件觸發必要確認流程／forcing function</label>
    </div>
+
+   <div id="actionDebrief" class="expert-compare">
+    <div class="stage-label">ACTION HIERARCHY</div>
+    <div class="action-ladder">
+      <div class="action-level weak"><strong>較弱</strong><span>提醒、宣導、再教育：高度依賴人員記憶與行為。</span></div>
+      <div class="action-level medium"><strong>中等</strong><span>Checklist、標準化流程：降低遺漏，但仍需要主動執行。</span></div>
+      <div class="action-level strong"><strong>較強</strong><span>自動提示、系統整合、forcing function：將安全防護嵌入工作流程。</span></div>
+    </div>
+    <p id="actionComment" class="note" style="margin-top:12px"></p>
+   </div>
+
    <div class="actions"><button class="btn primary" onclick="stage(7)">進入 Reflection →</button></div>
   </div>
 
@@ -310,7 +631,7 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
     <div class="fact-grid">
       <div class="fact"><b>People</b><span>工作負荷與經驗差異</span></div>
       <div class="fact"><b>Process</b><span>排程前未完成必要風險確認</span></div>
-      <div class="fact"><b>System</b><span>關鍵檢驗資訊未於正確時間主動呈現</span></div>
+      <div class="fact"><b>System</b><span>Creatinine 異常等關鍵檢驗資訊未於正確時間主動呈現</span></div>
       <div class="fact"><b>Communication</b><span>ER 與 CT 之間缺乏結構化資訊交接</span></div>
     </div>
    </div>
@@ -320,7 +641,251 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
       Near miss 的價值，不在於「幸好沒有出事」，而在於它揭露了系統幾乎失效的位置。
     </p>
    </div>
-   <div class="actions"><button class="btn secondary" onclick="resetCase()">返回案例庫</button><button class="btn primary" onclick="switchSection('library')">前往學習資源</button></div>
+   <div class="actions"><button class="btn secondary" onclick="resetCase()">返回案例學習</button><button class="btn primary" onclick="completeCase1()">前往 Case 02 →</button></div>
+  </div>
+ </div>
+</section>
+
+
+<section id="case2" class="section">
+ <div class="case-shell">
+  <div class="section-title"><div class="en">CASE 02 · SUPPORTED PRACTICE</div><h2>一般攝影：可能懷孕資訊</h2><p>關鍵資訊尚未被取得時，如何辨識不確定性、溝通並依流程確認。</p></div>
+  <div class="card">
+   <div id="c2s1" class="stage active">
+    <div class="stage-label">STEP 01 · EXPERIENCE</div>
+    <h3>「不好意思……如果有可能懷孕，可以照嗎？」</h3>
+    <p>22 歲女性因下背痛接受涉及骨盆區域的一般 X 光檢查。你已完成基本身分核對與擺位說明，準備進一步進行檢查時，病人表示最近月經似乎延遲，不能確定是否懷孕。</p>
+    <div class="decision-grid">
+     <button class="option" onclick="c2choose(false)">A　劑量很低，不需要特別處理</button>
+     <button class="option" onclick="c2choose(true)">B　暫停流程，進一步確認相關資訊並依院內規範處理</button>
+     <button class="option" onclick="c2choose(false)">C　請病人自行決定是否要照</button>
+     <button class="option" onclick="c2choose(false)">D　只要可能懷孕就一律取消所有 X 光</button>
+    </div>
+    <div id="c2fb1" class="feedback"></div>
+    <div class="actions"><button id="c2n1" class="btn primary hidden" onclick="c2stage(2)">繼續 →</button></div>
+   </div>
+
+   <div id="c2s2" class="stage">
+    <div class="micro-card">
+     <div class="micro-label">MICRO-LEARNING · UNCERTAINTY & COMMUNICATION</div>
+     <h4>重點不是「懷孕＝不能照」，而是不要忽略尚未釐清的重要資訊</h4>
+     <p>當病人提出可能懷孕的資訊時，放射技術人員應先辨識不確定性、進一步取得必要資訊，並依檢查部位、臨床需求及院內規範進行確認或升級處理。</p>
+    </div>
+    <h3>這個 Near Miss 值得追問的是什麼？</h3>
+    <div class="options">
+     <button class="option" onclick="c2info('process')">為什麼這項安全相關資訊直到準備檢查時才被提出？</button>
+     <button class="option" onclick="c2info('blame')">為什麼病人沒有一開始就主動說？</button>
+     <button class="option" onclick="c2info('cancel')">是不是應該把所有育齡女性的檢查都取消？</button>
+    </div>
+    <div id="c2fb2" class="feedback"></div>
+    <div class="actions"><button id="c2n2" class="btn primary hidden" onclick="c2stage(3)">開始分析 →</button></div>
+   </div>
+
+   <div id="c2s3" class="stage">
+    <div class="stage-label">STEP 03 · GUIDED WHY</div>
+    <h3>為什麼可能影響檢查決策的資訊，到這麼後面才出現？</h3>
+    <p class="note">Case 02 不再逐題帶你做 5 Whys。請沿用 Case 01 的方法，往流程或系統層面多追問幾步。</p>
+    <div class="why-stack"><div class="why-block">
+          <div class="why-num">WHY 01</div>
+          <label>為什麼可能懷孕的資訊直到準備檢查時才出現？</label>
+          <textarea id="c2why1" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 02</div>
+          <label>為什麼這項資訊沒有在更早的流程被取得？</label>
+          <textarea id="c2why2" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 03</div>
+          <label>為什麼安全確認可能會依賴病人主動提出？</label>
+          <textarea id="c2why3" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 04</div>
+          <label>有哪些流程、溝通或系統條件讓這件事有機會發生？</label>
+          <textarea id="c2why4" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 05</div>
+          <label>如果換一位病人或技術師，相同問題仍可能再次發生嗎？為什麼？</label>
+          <textarea id="c2why5" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div></div>
+<p class="note">不一定需要硬湊滿五個答案；重點是讓每一個 Why 承接上一層思考，逐步從表面現象走向流程或系統因素。</p>
+    <div class="actions"><button class="btn primary" onclick="c2stage(4)">整理 contributing factors →</button></div>
+   </div>
+
+   <div id="c2s4" class="stage">
+    <div class="stage-label">STEP 04 · CONTRIBUTING FACTORS</div>
+    <h3>從不同面向重新看事件</h3>
+    <p class="note">至少從兩個面向思考。沒有唯一標準答案，重點是不要只停在「病人沒有說」。</p>
+    
+    <div class="mindmap-wrap">
+      <div class="mindmap-grid">
+        <div class="mm-domain mm-people">
+          <span class="mm-prompt">PEOPLE</span><h4>人員</h4>
+          <p>病人／人員的知識、理解或工作條件是否影響資訊取得？</p>
+          <textarea id="c2p" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+        <div class="mm-domain mm-communication">
+          <span class="mm-prompt">COMMUNICATION</span><h4>溝通</h4>
+          <p>詢問方式、隱私或理解是否影響資訊揭露？</p>
+          <textarea id="c2co" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+        <div class="mm-center">
+          <small>NEAR MISS</small>
+          <strong>可能懷孕的重要資訊<br>直到準備檢查時才出現</strong>
+        </div>
+        <div class="mm-domain mm-process">
+          <span class="mm-prompt">PROCESS</span><h4>流程</h4>
+          <p>安全詢問是否有適當且一致的時點？</p>
+          <textarea id="c2pr" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+        <div class="mm-domain mm-system">
+          <span class="mm-prompt">SYSTEM</span><h4>系統</h4>
+          <p>必要資訊是否有一致的紀錄或提示方式？</p>
+          <textarea id="c2sy" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="mm-reflect"><h4 style="color:var(--navy)">最重要的 contributing factor</h4><textarea id="c2priority" rows="2" placeholder="你認為最值得優先改善的是什麼？為什麼？"></textarea></div>
+    <div class="actions"><button class="btn primary" onclick="c2stage(5)">提出改善 →</button></div>
+   </div>
+
+   <div id="c2s5" class="stage">
+    <div class="stage-label">STEP 05 · IMPROVEMENT</div>
+    <h3>哪一種作法較能降低相同資訊再次太晚出現？</h3>
+    <div class="rank">
+     <label><input type="radio" name="c2fix" value="1"> 提醒病人下次要自己提早說</label>
+     <label><input type="radio" name="c2fix" value="2"> 加強人員教育，要求大家更注意</label>
+     <label><input type="radio" name="c2fix" value="3"> 建立一致、適當且尊重隱私的檢查前詢問／確認流程</label>
+     <label><input type="radio" name="c2fix" value="4"> 將必要的安全確認節點標準化，並與院內既有流程／資訊紀錄整合</label>
+    </div>
+    <div class="actions"><button class="btn primary" onclick="c2finish()">Expert Debrief →</button></div>
+   </div>
+
+   <div id="c2result" class="stage">
+    <div class="stage-label">CASE COMPLETED · EXPERT DEBRIEF</div>
+    <h3>Possible Pregnancy：不要把安全責任只放在病人「主動說」</h3>
+    <p>本案例的學習重點不是把可能懷孕視為所有 X 光檢查的絕對禁忌，而是：<b>當重要資訊可能影響檢查決策時，流程是否能在適當時間、以適當方式主動取得與確認。</b></p>
+    <div class="fact-grid">
+     <div class="fact"><b>People</b><span>病人未必知道哪些資訊與影像檢查有關</span></div>
+     <div class="fact"><b>Process</b><span>安全詢問應有合適且一致的確認節點</span></div>
+     <div class="fact"><b>System</b><span>必要資訊可透過標準化紀錄與流程支持</span></div>
+     <div class="fact"><b>Communication</b><span>詢問方式需清楚、尊重隱私並確認理解</span></div>
+    </div>
+    <div class="actions"><button class="btn secondary" onclick="switchSection('home')">返回案例學習</button><button class="btn primary" onclick="completeCase2()">前往 Case 03 →</button></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="case3" class="section">
+ <div class="case-shell">
+  <div class="section-title"><div class="en">CASE 03 · INDEPENDENT PRACTICE</div><h2>Wrong Patient / Wrong Exam</h2><p>辨識身分與檢查不一致，分析錯誤如何穿越多層防線。</p></div>
+  <div class="card">
+   <div id="c3s1" class="stage active">
+    <div class="stage-label">STEP 01 · EXPERIENCE</div><h3>兩位姓名相近的病人幾乎同時抵達檢查區</h3>
+    <p>其中一位預計接受胸部 X 光，另一位為腹部 X 光。工作清單上兩筆病人姓名相近，候診區同時有人回應叫號。</p>
+    <h3 style="font-size:18px">你會如何開始？</h3>
+    <div class="decision-grid">
+     <button class="option" onclick="c3choose(false)">A　依候診區第一位回應姓名者進行檢查</button>
+     <button class="option" onclick="c3choose(true)">B　使用至少兩項病人識別資訊，並核對檢查項目</button>
+     <button class="option" onclick="c3choose(false)">C　只確認姓名，因為工作清單已有檢查項目</button>
+     <button class="option" onclick="c3choose(false)">D　請護理人員指出哪一位病人即可</button>
+    </div>
+    <div id="c3fb1" class="feedback"></div><div class="actions"><button id="c3n1" class="btn primary hidden" onclick="c3stage(2)">事件揭露 →</button></div>
+   </div>
+
+   <div id="c3s2" class="stage">
+    <div class="stage-label">STEP 02 · EVENT</div><h3>在曝光前的最後核對，你發現病人與檢查項目不一致</h3>
+    <p>錯誤尚未造成實際曝光，但已穿越叫號與候診流程，直到檢查前核對才被攔截。</p>
+    <div class="micro-card"><div class="micro-label">MICRO-LEARNING · DEFENSES</div><h4>Near Miss 可以用來看「哪一道防線差點失效」</h4><p>不要只問「誰叫錯名字」，而要追蹤錯誤如何一路接近病人，以及哪一道防線最後成功攔截。</p></div>
+    <div class="actions"><button class="btn primary" onclick="c3stage(3)">開始獨立分析 →</button></div>
+   </div>
+
+   <div id="c3s3" class="stage">
+    <div class="stage-label">STEP 03 · INDEPENDENT ANALYSIS</div><h3>Why did this happen?</h3>
+    <div class="why-stack independent"><div class="why-block">
+          <div class="why-num">WHY 01</div>
+          <label>Why 1｜從最直接的原因開始。</label>
+          <textarea id="c3why1" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 02</div>
+          <label>Why 2｜針對上一層答案再追問「為什麼？」</label>
+          <textarea id="c3why2" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 03</div>
+          <label>Why 3｜繼續往流程或工作條件追問。</label>
+          <textarea id="c3why3" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 04</div>
+          <label>Why 4｜是否存在系統或溝通層面的因素？</label>
+          <textarea id="c3why4" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div>
+<div class="why-block">
+          <div class="why-num">WHY 05</div>
+          <label>Why 5｜什麼因素讓相同事件仍有再次發生的可能？</label>
+          <textarea id="c3why5" rows="2" placeholder="寫下你的思考…"></textarea>
+        </div></div>
+<p class="note">Case 03 不提供案例答案提示。請讓每一層 Why 延續上一層答案；當你已找到具有改善意義的流程或系統因素時，可以停止。</p>
+    
+    <div class="mindmap-wrap">
+      <div class="mindmap-grid">
+        <div class="mm-domain mm-people">
+          <span class="mm-prompt">PEOPLE</span><h4>人員</h4>
+          <p>人員或工作條件可能如何影響辨識？</p>
+          <textarea id="c3p" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+        <div class="mm-domain mm-communication">
+          <span class="mm-prompt">COMMUNICATION</span><h4>溝通</h4>
+          <p>叫號、交接或團隊溝通是否存在落差？</p>
+          <textarea id="c3co" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+        <div class="mm-center">
+          <small>NEAR MISS</small>
+          <strong>病人與檢查項目差點錯配<br>直到曝光前才被攔截</strong>
+        </div>
+        <div class="mm-domain mm-process">
+          <span class="mm-prompt">PROCESS</span><h4>流程</h4>
+          <p>哪一道核對流程原本可以更早攔截？</p>
+          <textarea id="c3pr" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+        <div class="mm-domain mm-system">
+          <span class="mm-prompt">SYSTEM</span><h4>系統</h4>
+          <p>工作清單或資訊工具是否能降低錯配？</p>
+          <textarea id="c3sy" rows="3" placeholder="寫下你的觀察…"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="mm-reflect"><h4 style="color:var(--navy)">最重要的 contributing factor</h4><textarea id="c3priority" rows="2" placeholder="你認為哪一項最值得優先改善？為什麼？"></textarea></div>
+    <div class="actions"><button class="btn primary" onclick="c3stage(4)">提出改善 →</button></div>
+   </div>
+
+   <div id="c3s4" class="stage">
+    <div class="stage-label">STEP 04 · CORRECTIVE ACTION</div><h3>哪一項改善最能強化防線？</h3>
+    <div class="rank">
+     <label><input type="radio" name="c3fix" value="1"> 提醒工作人員叫號時更大聲</label>
+     <label><input type="radio" name="c3fix" value="2"> 再教育病人要仔細聽自己的名字</label>
+     <label><input type="radio" name="c3fix" value="3"> 標準化至少兩項識別資訊＋檢查項目核對</label>
+     <label><input type="radio" name="c3fix" value="4"> 在工作流程中加入條碼／電子核對等可行的系統防護</label>
+    </div>
+    <div class="actions"><button class="btn primary" onclick="c3finish()">Expert Debrief →</button></div>
+   </div>
+
+   <div id="c3result" class="stage">
+    <div class="stage-label">CASE COMPLETED · EXPERT DEBRIEF</div><h3>Wrong Patient / Wrong Exam：把最後一道防線往前移</h3>
+    <p>姓名相近、忙碌環境或叫號混淆可能促成事件，但較穩健的安全策略，是讓<b>病人識別與檢查項目核對成為標準化、可重複執行的流程</b>，而不是只依賴記憶或注意力。</p>
+    <div class="fact-grid">
+     <div class="fact"><b>People</b><span>注意力與工作負荷會變動</span></div>
+     <div class="fact"><b>Process</b><span>身分與檢查核對應有固定節點</span></div>
+     <div class="fact"><b>System</b><span>可用技術防護降低錯配機會</span></div>
+     <div class="fact"><b>Communication</b><span>叫號與交接不能取代正式識別</span></div>
+    </div>
+    <div class="actions"><button class="btn secondary" onclick="switchSection('home')">返回案例學習</button><button class="btn primary" onclick="completeCase3()">完成學習路徑 ✓</button></div>
+   </div>
   </div>
  </div>
 </section>
@@ -329,7 +894,7 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
  <div class="section-title"><div class="en">LEARNING RESOURCES</div><h2>延伸學習資源</h2><p>這一區未來可直接連到 Google Drive 的院內教材與 SOP。</p></div>
  <div class="library">
   <div class="lib-card"><div class="icon">📘</div><h3>Contrast Safety SOP</h3><p>放置院內核准的對比劑安全流程與檢查前確認文件。</p><a class="drive" href="#" onclick="demoDrive(event)">Google Drive →</a></div>
-  <div class="lib-card"><div class="icon">🧩</div><h3>RCA Learning Sheet</h3><p>5 Whys、Fishbone 與系統性事件分析的學習單。</p><a class="drive" href="#" onclick="demoDrive(event)">Google Drive →</a></div>
+  <div class="lib-card"><div class="icon">🧩</div><h3>Safety Reflection Learning Sheet</h3><p>5 Whys、Contributing Factors 與 Safety Reflection Mind Map 的學習單。</p><a class="drive" href="#" onclick="demoDrive(event)">Google Drive →</a></div>
   <div class="lib-card"><div class="icon">🎬</div><h3>Micro-learning Video</h3><p>3–5 分鐘 Near Miss 與 Just Culture 微課程影片。</p><a class="drive" href="#" onclick="demoDrive(event)">Google Drive →</a></div>
  </div>
 </section>
@@ -340,14 +905,14 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
   <div class="fact-grid">
    <div class="fact"><b>01 RECOGNIZE</b><span>辨識風險與 Near Miss</span></div>
    <div class="fact"><b>02 DECIDE</b><span>依情境做出安全決策</span></div>
-   <div class="fact"><b>03 ANALYZE</b><span>Timeline、5 Whys、Fishbone</span></div>
+   <div class="fact"><b>03 ANALYZE</b><span>Timeline、5 Whys、Safety Mind Map</span></div>
    <div class="fact"><b>04 IMPROVE</b><span>提出系統層級改善措施</span></div>
   </div>
  </div>
 </section>
 </main>
 
-<footer>Radiology Safety Lab · Near-Miss Case-Based Learning Prototype · v0.3</footer>
+<footer>Radiology Safety Lab · Near-Miss Case-Based Learning Prototype · v0.12</footer>
 
 <script>
 let recognition=45, systems=55, corrective=45;
@@ -384,7 +949,7 @@ function revealInfo(type){
  }else if(type==='lab'){
    soughtInfo.add('lab');
    recognition+=15;
-   info.innerHTML='<b>近期檢驗</b><br>Creatinine 升高，eGFR 24 mL/min/1.73m²。這是一項需要進一步評估與確認的安全關鍵資訊。';
+   info.innerHTML='<b>近期檢驗</b><br>Creatinine 升高，Creatinine 2.3 mg/dL ↑。這是一項需要進一步評估與確認的安全關鍵資訊。';
  }else if(type==='ask'){
    soughtInfo.add('ask');
    info.innerHTML='<b>病人訪談</b><br>病人表示近期食慾差、活動力下降，對既往腎功能狀況不清楚。';
@@ -404,6 +969,26 @@ function classify(ok){
  else f.innerHTML='<b>再想想是否已造成病人傷害。</b> 本案例的學習重點是分析「為什麼差一點發生」，以及哪些系統防線沒有提早作用。';
  document.getElementById('n2').classList.remove('hidden');
 }
+
+let selectedFactor=null, factorAssignments={};
+
+
+function showActionDebrief(){
+ const v=document.querySelector('input[name="fix"]:checked');
+ if(!v)return;
+ const box=document.getElementById('actionDebrief');
+ const c=document.getElementById('actionComment');
+ box.classList.add('show');
+ const n=+v.value;
+ if(n<=2){
+   c.innerHTML='<b>你的選擇偏向人員層級介入。</b> 教育與提醒可能有幫助，但若事件源自資訊未被及時呈現，單靠人員記憶通常不足以降低再發生風險。';
+ }else if(n===3){
+   c.innerHTML='<b>Checklist 屬於流程層級改善。</b> 可增加標準化與可預期性，但仍需思考是否能把關鍵資訊更早、更主動地帶入工作流程。';
+ }else{
+   c.innerHTML='<b>你的選擇已進入系統層級改善。</b> 這類介入較能把安全防護嵌入流程，減少單純依賴個人記憶與臨場注意力。';
+ }
+}
+
 function finish(){
  let v=document.querySelector('input[name="fix"]:checked');
  let actionText='尚未選擇改善措施';
@@ -426,6 +1011,46 @@ function finish(){
  document.getElementById('analysisSummary').innerHTML =
    [...strengths,...gaps,`<br><b>你選擇的改善措施：</b>${actionText}`].join('<br>');
 }
+
+
+const PROGRESS_KEY='radiologySafetyLabProgress_v07';
+function getProgress(){
+ try{return JSON.parse(localStorage.getItem(PROGRESS_KEY))||{case1:false,case2:false,case3:false}}catch(e){return{case1:false,case2:false,case3:false}}
+}
+function saveProgress(p){try{localStorage.setItem(PROGRESS_KEY,JSON.stringify(p))}catch(e){} updateCaseAccess()}
+function updateCaseAccess(){
+ const p=getProgress();
+ const c2=document.getElementById('case2Card'),b2=document.getElementById('case2Btn');
+ const c3=document.getElementById('case3Card'),b3=document.getElementById('case3Btn');
+ if(p.case1){c2?.classList.remove('locked');if(b2){b2.className='btn primary';b2.textContent=p.case2?'Review Case →':'Start Case →'};document.getElementById('done1')?.classList.add('show')}
+ else {c2?.classList.add('locked');if(b2){b2.className='btn secondary';b2.textContent='🔒 Complete Case 01 First'}}
+ if(p.case2){c3?.classList.remove('locked');if(b3){b3.className='btn primary';b3.textContent=p.case3?'Review Case →':'Start Case →'};document.getElementById('done2')?.classList.add('show')}
+ else {c3?.classList.add('locked');if(b3){b3.className='btn secondary';b3.textContent='🔒 Complete Case 02 First'}}
+ if(p.case3)document.getElementById('done3')?.classList.add('show');
+}
+function completeCase1(){let p=getProgress();p.case1=true;saveProgress(p);switchSection('home');window.scrollTo({top:0,behavior:'smooth'})}
+function completeCase2(){let p=getProgress();p.case2=true;saveProgress(p);switchSection('home');window.scrollTo({top:0,behavior:'smooth'})}
+function completeCase3(){let p=getProgress();p.case3=true;saveProgress(p);switchSection('home');window.scrollTo({top:0,behavior:'smooth'})}
+
+function startCase2(){
+ const p=getProgress();
+ if(!p.case1){alert('請先完成 Case 01：CT Contrast Safety。');return}
+ switchSection('case2');c2stage(1)
+}
+function c2stage(n){document.querySelectorAll('#case2 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c2s'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function c2choose(ok){let f=document.getElementById('c2fb1');f.className='feedback show '+(ok?'good':'warn');f.innerHTML=ok?'<b>適當。</b> 面對可能影響檢查決策的重要資訊，先暫停、確認並依院內流程處理，比直接假設或自行取消更合適。':'<b>再想一下。</b> 重點不是直接假設安全或一律取消，而是辨識不確定性、取得必要資訊並依規範確認。';document.getElementById('c2n1').classList.remove('hidden')}
+function c2info(type){let f=document.getElementById('c2fb2');f.className='feedback show '+(type==='process'?'good':'warn');f.innerHTML=type==='process'?'<b>很好。</b> 這把問題從「病人為什麼沒說」轉向「流程如何更早取得重要資訊」。':'<b>這個想法容易把責任停留在單一個人或過度簡化。</b> 再問一步：流程是否能在更適當的時間主動取得這項資訊？';document.getElementById('c2n2').classList.remove('hidden')}
+function c2finish(){let p=getProgress();p.case2=true;saveProgress(p);document.querySelectorAll('#case2 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c2result').classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+
+function startCase3(){
+ const p=getProgress();
+ if(!p.case2){alert('請先完成 Case 02：一般攝影－可能懷孕資訊。');return}
+ switchSection('case3');c3stage(1)
+}
+function c3stage(n){document.querySelectorAll('#case3 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c3s'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function c3choose(ok){let f=document.getElementById('c3fb1');f.className='feedback show '+(ok?'good':'warn');f.innerHTML=ok?'<b>適當。</b> 姓名相近或多人同時候診時，不能把「有人回應叫號」當成完整身分確認。':'<b>這仍可能讓錯誤穿越防線。</b> 正式檢查前應使用至少兩項識別資訊，並同時確認正確檢查項目。';document.getElementById('c3n1').classList.remove('hidden')}
+function c3finish(){let p=getProgress();p.case3=true;saveProgress(p);document.querySelectorAll('#case3 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c3result').classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+
 function startCase(){
  switchSection('case');
  document.querySelectorAll('.stage').forEach(x=>x.classList.remove('active'));
@@ -439,6 +1064,7 @@ function resetCase(){
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function demoDrive(e){e.preventDefault();alert('這裡之後可以貼上你的 Google Drive 分享連結。');}
+updateCaseAccess();
 </script>
 </body>
 </html>
