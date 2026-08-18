@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radiology Safety Lab｜Near Miss 情境學習</title>
+<title>Radiology Safety Lab｜Patient Safety Case Learning</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
 
@@ -136,12 +136,12 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 <div class="topbar"></div>
 <nav>
  <div class="nav-inner">
-  <div class="logo" onclick="switchSection('case')">
+  <div class="logo" onclick="switchSection('home')">
    <div class="logo-mark">R</div>
-   <div><strong>Radiology Safety Lab</strong><small>NEAR MISS LEARNING</small></div>
+   <div><strong>Radiology Safety Lab</strong><small>PATIENT SAFETY LEARNING</small></div>
   </div>
   <div class="nav-links">
-   <button class="active" data-sec="case" onclick="switchSection('case')">案例學習</button>
+   <button class="active" data-sec="home" onclick="switchSection('home')">案例庫</button><button data-sec="case" onclick="switchSection('case')">案例學習</button>
    <button data-sec="library" onclick="switchSection('library')">學習資源</button>
    <button data-sec="about" onclick="switchSection('about')">學習架構</button>
   </div>
@@ -151,15 +151,44 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 <header class="hero">
  <div class="hero-inner">
   <div class="kicker">RADIOLOGY · PATIENT SAFETY · SYSTEM THINKING</div>
-  <h1>Learning from <span>Near Misses</span></h1>
-  <p>從差一點發生的事件中，練習風險辨識、臨床決策、根本原因分析與系統改善。重點不是找出「誰犯錯」，而是理解「系統為什麼允許錯誤接近病人」。</p>
+  <h1>Learning from <span>Safety Events</span></h1>
+  <p>從臨床安全事件中，練習風險辨識、資訊搜尋、臨床決策、根本原因分析與系統改善。重點不是找出「誰犯錯」，而是理解「系統為什麼允許風險接近病人」。</p>
   <div class="hero-meta"><span class="pill">Case-based Learning</span><span class="pill">5 Whys</span><span class="pill">Fishbone Analysis</span><span class="pill">Reflection</span></div>
  </div>
 </header>
 
+
 <main>
-<section id="case" class="section active">
- <div class="section-title"><div class="en">CASE LEARNING</div><h2>Near Miss 情境學習</h2><p>逐步揭露資訊，依當下情境做出判斷。</p></div>
+<section id="home" class="section active">
+ <div class="section-title"><div class="en">CASE LIBRARY</div><h2>Radiology Safety Lab</h2><p>選擇一個病人安全情境，進入逐步揭露式案例學習。</p></div>
+ <div class="library">
+  <div class="lib-card">
+   <div class="icon">🩻</div><span class="case-tag">CASE 01 · AVAILABLE</span>
+   <h3>急診 CT：最後一道防線</h3>
+   <p>從資訊搜尋、事件辨識到系統改善，練習對比劑相關病人安全決策。</p>
+   <p class="note">Focus：Risk recognition · Event classification · System thinking</p>
+   <button class="btn primary" onclick="startCase()">Start Case →</button>
+  </div>
+  <div class="lib-card">
+   <div class="icon">🧲</div><span class="case-tag">CASE 02 · COMING SOON</span>
+   <h3>MRI Safety Screening</h3>
+   <p>植入物資訊不完整時，如何辨識風險並升級處理。</p>
+   <p class="note">Focus：Safety screening · Escalation · Communication</p>
+   <button class="btn secondary" disabled>Coming Soon</button>
+  </div>
+  <div class="lib-card">
+   <div class="icon">🧍</div><span class="case-tag">CASE 03 · COMING SOON</span>
+   <h3>Wrong Patient / Wrong Exam</h3>
+   <p>從身分確認與流程防呆，分析錯誤如何穿越多層防線。</p>
+   <p class="note">Focus：Human factors · Workflow · RCA</p>
+   <button class="btn secondary" disabled>Coming Soon</button>
+  </div>
+ </div>
+</section>
+
+<section id="case" class="section">
+
+ <div class="section-title"><div class="en">CASE LEARNING</div><h2>Patient Safety 情境學習</h2><p>逐步揭露資訊，依當下情境做出判斷。</p></div>
 
  <div class="card case-head">
   <div>
@@ -179,18 +208,21 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 
  <div class="card">
   <div id="st1" class="stage active">
-   <div class="stage-label">STEP 01 · FIRST DECISION</div><h3>病人已到 CT 室，你會先做什麼？</h3>
+   <div class="stage-label">STEP 01 · INFORMATION SEEKING</div><h3>病人已到 CT 室。你準備開始檢查，會先做什麼？</h3>
+   <p class="note">急診護理師表示：「病人不太舒服，醫師希望可以盡快完成。」</p>
    <div class="options">
-    <button class="option" onclick="choose1(false)">A　直接開始掃描並準備注射</button>
-    <button class="option" onclick="choose1(true)">B　再次確認病歷、腎功能與對比劑相關風險</button>
-    <button class="option" onclick="choose1(false)">C　簽署同意書後即可開始</button>
-    <button class="option" onclick="choose1(false)">D　直接聯絡醫師取消檢查</button>
+    <button class="option" onclick="revealInfo('record')">查看病歷與近期診療資訊</button>
+    <button class="option" onclick="revealInfo('lab')">查看近期檢驗結果</button>
+    <button class="option" onclick="revealInfo('ask')">詢問病人與陪同人員</button>
+    <button class="option" onclick="revealInfo('start')">直接開始檢查流程</button>
    </div>
-   <div id="fb1" class="feedback"></div><div class="actions"><button id="n1" class="btn primary hidden" onclick="stage(2)">揭露下一段資訊 →</button></div>
+   <div id="infoPanel" class="feedback"></div>
+   <div id="fb1" class="feedback"></div>
+   <div class="actions"><button id="n1" class="btn primary hidden" onclick="stage(2)">進入下一階段 →</button></div>
   </div>
 
   <div id="st2" class="stage">
-   <div class="stage-label">STEP 02 · EVENT RECOGNITION</div><h3>新的安全關鍵資訊出現</h3>
+   <div class="stage-label">STEP 02 · EVENT CLASSIFICATION</div><h3>新的安全關鍵資訊出現</h3>
    <div class="fact-grid">
     <div class="fact"><b>eGFR</b><span style="color:#b78023;font-size:22px">24 mL/min/1.73m²</span></div>
     <div class="fact"><b>對比劑</b><span>尚未注射</span></div>
@@ -263,14 +295,32 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
   </div>
 
   <div id="result" class="stage">
-   <div class="stage-label">CASE COMPLETED</div><h3>Case 01 完成</h3>
-   <p>這個雛形以學習歷程為主，不儲存姓名，也不將答案送到外部伺服器。</p>
-   <div class="score-grid">
-    <div class="score"><strong id="score1">—</strong><span>Safety Recognition</span></div>
-    <div class="score"><strong id="score2">—</strong><span>System Thinking</span></div>
-    <div class="score"><strong id="score3">—</strong><span>Corrective Action</span></div>
+   <div class="stage-label">CASE COMPLETED · EXPERT DEBRIEF</div><h3>Case 01 完成</h3>
+   <p>完成案例後，重點不是得到一個百分比，而是比較你的推理與專家分析之間有哪些差異。</p>
+   <div class="card" style="box-shadow:none;background:#f8fbfd">
+    <h3 style="font-size:19px">YOUR ANALYSIS</h3>
+    <p id="analysisSummary" style="line-height:1.8"></p>
    </div>
-   <div class="actions"><button class="btn secondary" onclick="location.reload()">重新開始</button><button class="btn primary" onclick="switchSection('library')">前往學習資源</button></div>
+   <div class="card" style="box-shadow:none">
+    <h3 style="font-size:19px">EXPERT DEBRIEF</h3>
+    <p style="line-height:1.85">
+      本案例的關鍵，不只是最後執行者是否再次確認，而是「關鍵資訊已經存在，卻沒有在更早的流程節點被主動呈現與使用」。
+      因此分析時應同時注意 <b>流程設計、資訊系統、跨單位溝通與人員負荷</b>，而不是只歸因於個人疏忽。
+    </p>
+    <div class="fact-grid">
+      <div class="fact"><b>People</b><span>工作負荷與經驗差異</span></div>
+      <div class="fact"><b>Process</b><span>排程前未完成必要風險確認</span></div>
+      <div class="fact"><b>System</b><span>關鍵檢驗資訊未於正確時間主動呈現</span></div>
+      <div class="fact"><b>Communication</b><span>ER 與 CT 之間缺乏結構化資訊交接</span></div>
+    </div>
+   </div>
+   <div class="card" style="box-shadow:none;background:#173b5d;color:white">
+    <div class="stage-label" style="color:#f2d790">TAKE-HOME MESSAGE</div>
+    <p style="font-size:18px;line-height:1.8;margin-bottom:0">
+      Near miss 的價值，不在於「幸好沒有出事」，而在於它揭露了系統幾乎失效的位置。
+    </p>
+   </div>
+   <div class="actions"><button class="btn secondary" onclick="resetCase()">返回案例庫</button><button class="btn primary" onclick="switchSection('library')">前往學習資源</button></div>
   </div>
  </div>
 </section>
@@ -297,7 +347,7 @@ footer{background:var(--navy);color:#c9d9e5;text-align:center;padding:28px 20px;
 </section>
 </main>
 
-<footer>Radiology Safety Lab · Near-Miss Case-Based Learning Prototype · v0.2</footer>
+<footer>Radiology Safety Lab · Near-Miss Case-Based Learning Prototype · v0.3</footer>
 
 <script>
 let recognition=45, systems=55, corrective=45;
@@ -324,10 +374,28 @@ function stage(n){
  document.getElementById('st'+n).classList.add('active');buildStepper(n);
  document.querySelector('.stepper').scrollIntoView({behavior:'smooth',block:'center'});
 }
-function choose1(ok){
- let f=document.getElementById('fb1');f.className='feedback show '+(ok?'good':'warn');
- if(ok){recognition+=25;f.innerHTML='<b>較佳判斷。</b> 在真正執行前補齊安全關鍵資訊，有助於在傷害發生前攔截風險。';}
- else f.innerHTML='<b>值得再想一下。</b> 目前資訊仍不足；先補齊必要的安全資訊，比直接執行或直接取消更符合風險管理邏輯。';
+let soughtInfo = new Set();
+function revealInfo(type){
+ const info = document.getElementById('infoPanel');
+ info.className='feedback show';
+ if(type==='record'){
+   soughtInfo.add('record');
+   info.innerHTML='<b>病歷摘要</b><br>急診醫師考慮腹腔內感染／發炎相關病灶，安排增強 CT 進一步評估。';
+ }else if(type==='lab'){
+   soughtInfo.add('lab');
+   recognition+=15;
+   info.innerHTML='<b>近期檢驗</b><br>Creatinine 升高，eGFR 24 mL/min/1.73m²。這是一項需要進一步評估與確認的安全關鍵資訊。';
+ }else if(type==='ask'){
+   soughtInfo.add('ask');
+   info.innerHTML='<b>病人訪談</b><br>病人表示近期食慾差、活動力下降，對既往腎功能狀況不清楚。';
+ }else{
+   info.innerHTML='<b>你選擇直接進入檢查流程。</b><br>在正式執行前仍應完成必要的 safety check。';
+ }
+ const f=document.getElementById('fb1');
+ f.className='feedback show '+(soughtInfo.has('lab')?'good':'warn');
+ f.innerHTML=soughtInfo.has('lab')
+   ? '<b>你已找到一項關鍵風險資訊。</b> 接下來的問題是：這個資訊為什麼直到現在才被辨識？'
+   : '<b>資訊仍可能不完整。</b> 你可以繼續查看其他資訊，再進入下一階段。';
  document.getElementById('n1').classList.remove('hidden');
 }
 function classify(ok){
@@ -338,14 +406,37 @@ function classify(ok){
 }
 function finish(){
  let v=document.querySelector('input[name="fix"]:checked');
- if(v){let n=+v.value;corrective=Math.min(100,45+n*11);if(n>=4)systems+=25}
+ let actionText='尚未選擇改善措施';
+ if(v){
+   const label=v.closest('label').innerText.trim();
+   actionText=label;
+   if(+v.value>=4) systems+=25;
+ }
  recognition=Math.min(100,recognition);systems=Math.min(100,systems);
  document.querySelectorAll('.stage').forEach(x=>x.classList.remove('active'));
  document.getElementById('result').classList.add('active');
  document.getElementById('stepper').classList.add('hidden');
- document.getElementById('score1').textContent=recognition+'%';
- document.getElementById('score2').textContent=systems+'%';
- document.getElementById('score3').textContent=corrective+'%';
+ const strengths=[];
+ if(recognition>=75) strengths.push('✓ 能辨識並分類安全事件');
+ if(systems>=75) strengths.push('✓ 已開始從流程與系統層次思考');
+ if(soughtInfo.has('lab')) strengths.push('✓ 主動搜尋了關鍵檢驗資訊');
+ const gaps=[];
+ if(!soughtInfo.has('lab')) gaps.push('△ 關鍵檢驗資訊的主動搜尋仍可加強');
+ if(+((v||{}).value||0)<4) gaps.push('△ 改善措施仍偏向人員提醒／教育，可再往系統層級思考');
+ document.getElementById('analysisSummary').innerHTML =
+   [...strengths,...gaps,`<br><b>你選擇的改善措施：</b>${actionText}`].join('<br>');
+}
+function startCase(){
+ switchSection('case');
+ document.querySelectorAll('.stage').forEach(x=>x.classList.remove('active'));
+ document.getElementById('st1').classList.add('active');
+ document.getElementById('stepper').classList.remove('hidden');
+ buildStepper(1);
+}
+function resetCase(){
+ location.hash='';
+ switchSection('home');
+ window.scrollTo({top:0,behavior:'smooth'});
 }
 function demoDrive(e){e.preventDefault();alert('這裡之後可以貼上你的 Google Drive 分享連結。');}
 </script>
