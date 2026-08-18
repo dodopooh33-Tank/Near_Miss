@@ -376,6 +376,42 @@ textarea:focus,input:focus{
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+.summary-shell{margin-top:18px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:white;box-shadow:0 14px 32px rgba(36,67,78,.07)}
+.summary-head{padding:22px;background:linear-gradient(135deg,#15364A,#2A5B67);color:white}
+.summary-head .eyebrow{font-size:11px;letter-spacing:.14em;font-weight:900;color:#CFE4E1}.summary-head h3{margin:7px 0 4px;font-size:24px}.summary-head p{margin:0;color:#E1EEEC}
+.summary-body{padding:20px}.summary-section{padding:16px 0;border-bottom:1px solid var(--line)}.summary-section:last-child{border-bottom:0}
+.summary-section h4{margin:0 0 10px;color:var(--navy);font-size:15px;letter-spacing:.02em}
+.summary-answer{white-space:pre-wrap;background:#F7FAF8;border:1px solid #DDE9E6;border-radius:11px;padding:11px 13px;color:#354B53;line-height:1.65;min-height:44px}
+.summary-why{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:start;margin:8px 0}.summary-why b{font-size:11px;letter-spacing:.08em;color:#39777C;padding-top:10px}
+.summary-map{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.summary-map div{background:#F7FAF8;border:1px solid #DDE9E6;border-radius:11px;padding:12px}.summary-map b{display:block;color:#39777C;font-size:11px;letter-spacing:.08em;margin-bottom:5px}
+.summary-reflect{margin-top:16px;padding:16px;border-radius:13px;background:#FFF9EF;border:1px solid #E7D8B8}
+.summary-reflect textarea{width:100%;margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:white}
+@media(max-width:700px){.summary-map{grid-template-columns:1fr}.summary-why{grid-template-columns:52px 1fr}}
+
+/* ===== v0.16 Learning Summary readability ===== */
+.summary-head{
+  background:linear-gradient(135deg,#123247 0%,#1E5360 100%)!important;
+  color:#FFFFFF!important;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.summary-head .eyebrow{
+  color:#F0D7A5!important;
+  opacity:1!important;
+  font-weight:900!important;
+}
+.summary-head h3{
+  color:#FFFFFF!important;
+  text-shadow:0 2px 10px rgba(0,0,0,.18);
+}
+.summary-head p{color:#EAF4F2!important}
+
+.case-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.saved-note{margin-top:8px;font-size:12px;color:#5E777D}
+
+.summary-question{font-weight:700;color:#254653;line-height:1.55;margin:2px 0 8px}
+.summary-response-label{font-size:10px;letter-spacing:.10em;font-weight:900;color:#6B8589;margin-bottom:5px}
+.summary-factor-q{font-size:12px;color:#657B80;line-height:1.5;margin:4px 0 8px}
 </style>
 </head>
 <body>
@@ -422,21 +458,33 @@ textarea:focus,input:focus{
    <h3>急診 CT：最後一道防線</h3>
    <p>從資訊搜尋、事件辨識到系統改善，練習對比劑相關病人安全決策。</p>
    <p class="note">Level：Guided Practice｜Focus：Risk recognition · Event classification · System thinking</p>
-   <button class="btn primary" onclick="startCase()">Start Case →</button>
+   <div class="case-card-actions">
+          <button class="btn primary" onclick="startCase()">Start / Continue →</button>
+          <button id="review1Btn" class="btn secondary hidden" onclick="reviewSavedCase(1)">查看學習摘要</button>
+          <button id="restart1Btn" class="btn secondary hidden" onclick="restartCase(1)">重新練習</button>
+        </div>
   </div>
   <div id="case2Card" class="lib-card locked">
    <div class="icon">☢️</div><span class="case-tag">CASE 02 · UNLOCK AFTER CASE 01</span><span id="done2" class="complete-badge">COMPLETED</span>
    <h3>一般攝影：可能懷孕資訊</h3>
    <p>病人進入檢查流程後才提及月經延遲。練習如何取得關鍵安全資訊、溝通與依流程確認。</p>
    <p class="note">Level：Supported Practice｜Focus：Risk screening · Communication · Uncertainty</p>
-   <button id="case2Btn" class="btn secondary" onclick="startCase2()">🔒 Complete Case 01 First</button>
+   <div class="case-card-actions">
+          <button id="case2Btn" class="btn secondary" onclick="startCase2()">🔒 Complete Case 01 First</button>
+          <button id="review2Btn" class="btn secondary hidden" onclick="reviewSavedCase(2)">查看學習摘要</button>
+          <button id="restart2Btn" class="btn secondary hidden" onclick="restartCase(2)">重新練習</button>
+        </div>
   </div>
   <div id="case3Card" class="lib-card locked">
    <div class="icon">🧍</div><span class="case-tag">CASE 03 · UNLOCK AFTER CASE 02</span><span id="done3" class="complete-badge">COMPLETED</span>
    <h3>Wrong Patient / Wrong Exam</h3>
    <p>從身分確認與流程防呆，分析錯誤如何穿越多層防線。</p>
    <p class="note">Level：Independent Practice｜Focus：Identification · Verification · System defenses</p>
-   <button id="case3Btn" class="btn secondary" onclick="startCase3()">🔒 Complete Case 02 First</button>
+   <div class="case-card-actions">
+          <button id="case3Btn" class="btn secondary" onclick="startCase3()">🔒 Complete Case 02 First</button>
+          <button id="review3Btn" class="btn secondary hidden" onclick="reviewSavedCase(3)">查看學習摘要</button>
+          <button id="restart3Btn" class="btn secondary hidden" onclick="restartCase(3)">重新練習</button>
+        </div>
   </div>
  </div>
 </section>
@@ -487,7 +535,7 @@ textarea:focus,input:focus{
    <p class="note">本案例重點為「高風險資訊直到檢查前才被發現」，並非將單一 單一 Creatinine 數值直接等同於絕對禁忌。</p>
    <h3 style="font-size:19px;margin-top:22px">你如何分類這個事件？</h3>
    <div class="options">
-    <button class="option" onclick="classify(false)">Adverse Event</button><button class="option" onclick="classify(false)">Sentinel Event</button>
+    <button class="option" onclick="classify(false)">Adverse Event｜不良事件</button><button class="option" onclick="classify(false)">Sentinel Event｜警訊事件</button>
     <button class="option" onclick="classify(true)">Near Miss</button><button class="option" onclick="classify(false)">No Event</button>
    </div>
    <div id="fb2" class="feedback"></div><div class="actions"><button id="n2" class="btn primary hidden" onclick="stage(3)">進入事件分析 →</button></div>
@@ -506,14 +554,34 @@ textarea:focus,input:focus{
   </div>
 
   <div id="st4" class="stage">
-   <div class="stage-label">STEP 04 · ASK WHY</div><h3>5 Whys：把問題往系統層次追問</h3>
-   <div class="whys">
-    <input placeholder="Why 1｜為什麼病人已到 CT 才發現風險？">
-    <input placeholder="Why 2｜為什麼排程前沒有攔截？">
-    <input placeholder="Why 3｜為什麼流程依賴人工確認？">
-    <input placeholder="Why 4｜為什麼資訊沒有在正確時間被呈現？">
-    <textarea rows="3" placeholder="Why 5｜如果要降低再次發生機率，系統應該改變什麼？"></textarea>
-   </div>
+   <div class="stage-label">STEP 04 · ASK WHY</div><h3>5 Whys｜從表面現象往流程與系統深入</h3>
+   <p class="note">針對上一層答案持續追問「為什麼」。不一定需要問滿五次；當你已經找到具有改善意義的流程、系統或溝通因素時，可以停止。</p><div class="why-stack">
+<div class="why-block">
+<div class="why-num">WHY 01</div>
+<label>為什麼病人已到 CT 才發現風險？</label>
+<textarea id="c1why1" rows="2" placeholder="寫下你的思考…"></textarea>
+</div>
+<div class="why-block">
+<div class="why-num">WHY 02</div>
+<label>為什麼排程前沒有攔截？</label>
+<textarea id="c1why2" rows="2" placeholder="寫下你的思考…"></textarea>
+</div>
+<div class="why-block">
+<div class="why-num">WHY 03</div>
+<label>為什麼流程會依賴人工確認？</label>
+<textarea id="c1why3" rows="2" placeholder="寫下你的思考…"></textarea>
+</div>
+<div class="why-block">
+<div class="why-num">WHY 04</div>
+<label>為什麼重要資訊沒有在正確時間被呈現？</label>
+<textarea id="c1why4" rows="2" placeholder="寫下你的思考…"></textarea>
+</div>
+<div class="why-block">
+<div class="why-num">WHY 05</div>
+<label>如果要降低再次發生機率，流程或系統應該改變什麼？</label>
+<textarea id="c1why5" rows="2" placeholder="寫下你的思考…"></textarea>
+</div>
+</div>
    <div class="actions"><button class="btn primary" onclick="stage(5)">整理 Contributing Factors →</button></div>
   </div>
 
@@ -609,8 +677,8 @@ textarea:focus,input:focus{
   <div id="st7" class="stage">
    <div class="stage-label">STEP 07 · REFLECTION</div><h3>把這次事件轉化成下一次的安全能力</h3>
    <div class="reflection">
-    <textarea rows="3" placeholder="這次事件最重要的 contributing factor 是什麼？"></textarea><br><br>
-    <textarea rows="3" placeholder="如果你是當班放射師，你會在哪個階段介入？為什麼？"></textarea>
+    <textarea id="c1reflection1" rows="3" placeholder="這次事件最重要的 contributing factor 是什麼？"></textarea><br><br>
+    <textarea id="c1reflection2" rows="3" placeholder="如果你是當班放射師，你會在哪個階段介入？為什麼？"></textarea>
    </div>
    <div class="actions"><button class="btn primary" onclick="finish()">完成案例</button></div>
   </div>
@@ -641,7 +709,35 @@ textarea:focus,input:focus{
       Near miss 的價值，不在於「幸好沒有出事」，而在於它揭露了系統幾乎失效的位置。
     </p>
    </div>
-   <div class="actions"><button class="btn secondary" onclick="resetCase()">返回案例學習</button><button class="btn primary" onclick="completeCase1()">前往 Case 02 →</button></div>
+   
+
+<div class="summary-shell" id="summary1">
+ <div class="summary-head">
+  <div class="eyebrow">MY SAFETY REFLECTION</div>
+  <h3>我的 Case 01 學習摘要</h3>
+  <p>把剛才分散在不同步驟的思考重新整理成一個完整事件分析。</p>
+ </div>
+ <div class="summary-body">
+  <div class="summary-section"><h4>01｜Near Miss Event</h4><div class="summary-answer">Creatinine 異常資訊直到 CT 室才被辨識</div></div>
+  <div class="summary-section"><h4>02｜My 5 Whys</h4><div id="sum1whys"></div></div>
+  <div class="summary-section"><h4>03｜My Contributing Factors</h4><div class="summary-factor-q">從 People、Process、System、Communication 四個面向，哪些條件可能促成這次 Near Miss？</div><div class="summary-map">
+   <div><b>PEOPLE</b><span id="sum1people">—</span></div>
+   <div><b>PROCESS</b><span id="sum1process">—</span></div>
+   <div><b>SYSTEM</b><span id="sum1system">—</span></div>
+   <div><b>COMMUNICATION</b><span id="sum1communication">—</span></div>
+  </div></div>
+  <div class="summary-section"><h4>04｜Priority Factor</h4><div class="summary-factor-q">在上述因素中，你認為哪一項最值得優先改善？為什麼？</div><div id="sum1priority" class="summary-answer">—</div></div>
+  <div class="summary-section"><h4>05｜Corrective Action</h4><div class="summary-factor-q">針對你選擇的 Priority Factor，你會如何降低事件再次發生的可能？</div><div id="sum1action" class="summary-answer">—</div></div>
+  <div class="summary-section"><h4>06｜Reflection</h4><div id="sum1reflection" class="summary-answer">—</div></div>
+  <div class="summary-reflect">
+   <b>COMPARE WITH EXPERT PERSPECTIVE</b><br>
+   <span>看完專家觀點後，你現在最想修正或補充自己哪一個想法？</span>
+   <textarea id="sum1after" rows="3" placeholder="這裡目前只保留在本次瀏覽器頁面，不會上傳。"></textarea>
+  </div>
+ </div>
+</div>
+
+<div class="actions"><button class="btn secondary" onclick="resetCase()">返回案例學習</button><button class="btn primary" onclick="completeCase1()">前往 Case 02 →</button></div>
   </div>
  </div>
 </section>
@@ -682,9 +778,9 @@ textarea:focus,input:focus{
    </div>
 
    <div id="c2s3" class="stage">
-    <div class="stage-label">STEP 03 · GUIDED WHY</div>
-    <h3>為什麼可能影響檢查決策的資訊，到這麼後面才出現？</h3>
-    <p class="note">Case 02 不再逐題帶你做 5 Whys。請沿用 Case 01 的方法，往流程或系統層面多追問幾步。</p>
+    <div class="stage-label">STEP 03 · ASK WHY</div>
+    <h3>5 Whys｜從表面現象往流程與系統深入</h3>
+    <p class="note">沿用 Case 01 的方法，針對上一層答案持續追問「為什麼」。本案例保留較少提示，請嘗試自己把思考帶向流程、系統或溝通因素。</p>
     <div class="why-stack"><div class="why-block">
           <div class="why-num">WHY 01</div>
           <label>為什麼可能懷孕的資訊直到準備檢查時才出現？</label>
@@ -773,7 +869,34 @@ textarea:focus,input:focus{
      <div class="fact"><b>System</b><span>必要資訊可透過標準化紀錄與流程支持</span></div>
      <div class="fact"><b>Communication</b><span>詢問方式需清楚、尊重隱私並確認理解</span></div>
     </div>
-    <div class="actions"><button class="btn secondary" onclick="switchSection('home')">返回案例學習</button><button class="btn primary" onclick="completeCase2()">前往 Case 03 →</button></div>
+    
+<div class="summary-shell" id="summary2">
+ <div class="summary-head">
+  <div class="eyebrow">MY SAFETY REFLECTION</div>
+  <h3>我的 Case 02 學習摘要</h3>
+  <p>把剛才分散在不同步驟的思考重新整理成一個完整事件分析。</p>
+ </div>
+ <div class="summary-body">
+  <div class="summary-section"><h4>01｜Near Miss Event</h4><div class="summary-answer">可能懷孕的重要資訊直到準備檢查時才出現</div></div>
+  <div class="summary-section"><h4>02｜My 5 Whys</h4><div id="sum2whys"></div></div>
+  <div class="summary-section"><h4>03｜My Contributing Factors</h4><div class="summary-factor-q">從 People、Process、System、Communication 四個面向，哪些條件可能促成這次 Near Miss？</div><div class="summary-map">
+   <div><b>PEOPLE</b><span id="sum2people">—</span></div>
+   <div><b>PROCESS</b><span id="sum2process">—</span></div>
+   <div><b>SYSTEM</b><span id="sum2system">—</span></div>
+   <div><b>COMMUNICATION</b><span id="sum2communication">—</span></div>
+  </div></div>
+  <div class="summary-section"><h4>04｜Priority Factor</h4><div class="summary-factor-q">在上述因素中，你認為哪一項最值得優先改善？為什麼？</div><div id="sum2priority" class="summary-answer">—</div></div>
+  <div class="summary-section"><h4>05｜Corrective Action</h4><div class="summary-factor-q">針對你選擇的 Priority Factor，你會如何降低事件再次發生的可能？</div><div id="sum2action" class="summary-answer">—</div></div>
+  <div class="summary-section"><h4>06｜Reflection</h4><div id="sum2reflection" class="summary-answer">—</div></div>
+  <div class="summary-reflect">
+   <b>COMPARE WITH EXPERT PERSPECTIVE</b><br>
+   <span>看完專家觀點後，你現在最想修正或補充自己哪一個想法？</span>
+   <textarea id="sum2after" rows="3" placeholder="這裡目前只保留在本次瀏覽器頁面，不會上傳。"></textarea>
+  </div>
+ </div>
+</div>
+
+<div class="actions"><button class="btn secondary" onclick="switchSection('home')">返回案例學習</button><button class="btn primary" onclick="completeCase2()">前往 Case 03 →</button></div>
    </div>
   </div>
  </div>
@@ -804,7 +927,7 @@ textarea:focus,input:focus{
    </div>
 
    <div id="c3s3" class="stage">
-    <div class="stage-label">STEP 03 · INDEPENDENT ANALYSIS</div><h3>Why did this happen?</h3>
+    <div class="stage-label">STEP 03 · ASK WHY</div><h3>5 Whys｜從表面現象往流程與系統深入</h3>
     <div class="why-stack independent"><div class="why-block">
           <div class="why-num">WHY 01</div>
           <label>Why 1｜從最直接的原因開始。</label>
@@ -830,7 +953,7 @@ textarea:focus,input:focus{
           <label>Why 5｜什麼因素讓相同事件仍有再次發生的可能？</label>
           <textarea id="c3why5" rows="2" placeholder="寫下你的思考…"></textarea>
         </div></div>
-<p class="note">Case 03 不提供案例答案提示。請讓每一層 Why 延續上一層答案；當你已找到具有改善意義的流程或系統因素時，可以停止。</p>
+<p class="note">Case 03 僅保留最少提示。請讓每一層 Why 延續上一層答案；當你已找到具有改善意義的流程、系統或溝通因素時，可以停止。</p>
     
     <div class="mindmap-wrap">
       <div class="mindmap-grid">
@@ -884,7 +1007,34 @@ textarea:focus,input:focus{
      <div class="fact"><b>System</b><span>可用技術防護降低錯配機會</span></div>
      <div class="fact"><b>Communication</b><span>叫號與交接不能取代正式識別</span></div>
     </div>
-    <div class="actions"><button class="btn secondary" onclick="switchSection('home')">返回案例學習</button><button class="btn primary" onclick="completeCase3()">完成學習路徑 ✓</button></div>
+    
+<div class="summary-shell" id="summary3">
+ <div class="summary-head">
+  <div class="eyebrow">MY SAFETY REFLECTION</div>
+  <h3>我的 Case 03 學習摘要</h3>
+  <p>把剛才分散在不同步驟的思考重新整理成一個完整事件分析。</p>
+ </div>
+ <div class="summary-body">
+  <div class="summary-section"><h4>01｜Near Miss Event</h4><div class="summary-answer">病人與檢查項目差點錯配，直到曝光前才被攔截</div></div>
+  <div class="summary-section"><h4>02｜My 5 Whys</h4><div id="sum3whys"></div></div>
+  <div class="summary-section"><h4>03｜My Contributing Factors</h4><div class="summary-factor-q">從 People、Process、System、Communication 四個面向，哪些條件可能促成這次 Near Miss？</div><div class="summary-map">
+   <div><b>PEOPLE</b><span id="sum3people">—</span></div>
+   <div><b>PROCESS</b><span id="sum3process">—</span></div>
+   <div><b>SYSTEM</b><span id="sum3system">—</span></div>
+   <div><b>COMMUNICATION</b><span id="sum3communication">—</span></div>
+  </div></div>
+  <div class="summary-section"><h4>04｜Priority Factor</h4><div class="summary-factor-q">在上述因素中，你認為哪一項最值得優先改善？為什麼？</div><div id="sum3priority" class="summary-answer">—</div></div>
+  <div class="summary-section"><h4>05｜Corrective Action</h4><div class="summary-factor-q">針對你選擇的 Priority Factor，你會如何降低事件再次發生的可能？</div><div id="sum3action" class="summary-answer">—</div></div>
+  <div class="summary-section"><h4>06｜Reflection</h4><div id="sum3reflection" class="summary-answer">—</div></div>
+  <div class="summary-reflect">
+   <b>COMPARE WITH EXPERT PERSPECTIVE</b><br>
+   <span>看完專家觀點後，你現在最想修正或補充自己哪一個想法？</span>
+   <textarea id="sum3after" rows="3" placeholder="這裡目前只保留在本次瀏覽器頁面，不會上傳。"></textarea>
+  </div>
+ </div>
+</div>
+
+<div class="actions"><button class="btn secondary" onclick="switchSection('home')">返回案例學習</button><button class="btn primary" onclick="completeCase3()">完成學習路徑 ✓</button></div>
    </div>
   </div>
  </div>
@@ -912,7 +1062,7 @@ textarea:focus,input:focus{
 </section>
 </main>
 
-<footer>Radiology Safety Lab · Near-Miss Case-Based Learning Prototype · v0.12</footer>
+<footer>Radiology Safety Lab · Near-Miss Case-Based Learning Prototype · v0.18</footer>
 
 <script>
 let recognition=45, systems=55, corrective=45;
@@ -1000,6 +1150,8 @@ function finish(){
  recognition=Math.min(100,recognition);systems=Math.min(100,systems);
  document.querySelectorAll('.stage').forEach(x=>x.classList.remove('active'));
  document.getElementById('result').classList.add('active');
+ buildCase1Summary();
+ saveCaseRecord(1);
  document.getElementById('stepper').classList.add('hidden');
  const strengths=[];
  if(recognition>=75) strengths.push('✓ 能辨識並分類安全事件');
@@ -1019,14 +1171,23 @@ function getProgress(){
 }
 function saveProgress(p){try{localStorage.setItem(PROGRESS_KEY,JSON.stringify(p))}catch(e){} updateCaseAccess()}
 function updateCaseAccess(){
- const p=getProgress();
+ const p=getProgress(), records=getRecords();
  const c2=document.getElementById('case2Card'),b2=document.getElementById('case2Btn');
  const c3=document.getElementById('case3Card'),b3=document.getElementById('case3Btn');
- if(p.case1){c2?.classList.remove('locked');if(b2){b2.className='btn primary';b2.textContent=p.case2?'Review Case →':'Start Case →'};document.getElementById('done1')?.classList.add('show')}
+
+ if(p.case1){c2?.classList.remove('locked');if(b2){b2.className='btn primary';b2.textContent=p.case2?'Review / Continue →':'Start Case →'};document.getElementById('done1')?.classList.add('show')}
  else {c2?.classList.add('locked');if(b2){b2.className='btn secondary';b2.textContent='🔒 Complete Case 01 First'}}
- if(p.case2){c3?.classList.remove('locked');if(b3){b3.className='btn primary';b3.textContent=p.case3?'Review Case →':'Start Case →'};document.getElementById('done2')?.classList.add('show')}
+
+ if(p.case2){c3?.classList.remove('locked');if(b3){b3.className='btn primary';b3.textContent=p.case3?'Review / Continue →':'Start Case →'};document.getElementById('done2')?.classList.add('show')}
  else {c3?.classList.add('locked');if(b3){b3.className='btn secondary';b3.textContent='🔒 Complete Case 02 First'}}
+
  if(p.case3)document.getElementById('done3')?.classList.add('show');
+
+ [1,2,3].forEach(n=>{
+   const has=!!records['case'+n];
+   document.getElementById('review'+n+'Btn')?.classList.toggle('hidden',!has);
+   document.getElementById('restart'+n+'Btn')?.classList.toggle('hidden',!has);
+ });
 }
 function completeCase1(){let p=getProgress();p.case1=true;saveProgress(p);switchSection('home');window.scrollTo({top:0,behavior:'smooth'})}
 function completeCase2(){let p=getProgress();p.case2=true;saveProgress(p);switchSection('home');window.scrollTo({top:0,behavior:'smooth'})}
@@ -1040,7 +1201,7 @@ function startCase2(){
 function c2stage(n){document.querySelectorAll('#case2 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c2s'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
 function c2choose(ok){let f=document.getElementById('c2fb1');f.className='feedback show '+(ok?'good':'warn');f.innerHTML=ok?'<b>適當。</b> 面對可能影響檢查決策的重要資訊，先暫停、確認並依院內流程處理，比直接假設或自行取消更合適。':'<b>再想一下。</b> 重點不是直接假設安全或一律取消，而是辨識不確定性、取得必要資訊並依規範確認。';document.getElementById('c2n1').classList.remove('hidden')}
 function c2info(type){let f=document.getElementById('c2fb2');f.className='feedback show '+(type==='process'?'good':'warn');f.innerHTML=type==='process'?'<b>很好。</b> 這把問題從「病人為什麼沒說」轉向「流程如何更早取得重要資訊」。':'<b>這個想法容易把責任停留在單一個人或過度簡化。</b> 再問一步：流程是否能在更適當的時間主動取得這項資訊？';document.getElementById('c2n2').classList.remove('hidden')}
-function c2finish(){let p=getProgress();p.case2=true;saveProgress(p);document.querySelectorAll('#case2 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c2result').classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function c2finish(){let p=getProgress();p.case2=true;saveProgress(p);document.querySelectorAll('#case2 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c2result').classList.add('active');buildCase2Summary();saveCaseRecord(2);window.scrollTo({top:0,behavior:'smooth'})}
 
 function startCase3(){
  const p=getProgress();
@@ -1049,7 +1210,7 @@ function startCase3(){
 }
 function c3stage(n){document.querySelectorAll('#case3 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c3s'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
 function c3choose(ok){let f=document.getElementById('c3fb1');f.className='feedback show '+(ok?'good':'warn');f.innerHTML=ok?'<b>適當。</b> 姓名相近或多人同時候診時，不能把「有人回應叫號」當成完整身分確認。':'<b>這仍可能讓錯誤穿越防線。</b> 正式檢查前應使用至少兩項識別資訊，並同時確認正確檢查項目。';document.getElementById('c3n1').classList.remove('hidden')}
-function c3finish(){let p=getProgress();p.case3=true;saveProgress(p);document.querySelectorAll('#case3 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c3result').classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function c3finish(){let p=getProgress();p.case3=true;saveProgress(p);document.querySelectorAll('#case3 .stage').forEach(x=>x.classList.remove('active'));document.getElementById('c3result').classList.add('active');buildCase3Summary();saveCaseRecord(3);window.scrollTo({top:0,behavior:'smooth'})}
 
 function startCase(){
  switchSection('case');
@@ -1065,6 +1226,247 @@ function resetCase(){
 }
 function demoDrive(e){e.preventDefault();alert('這裡之後可以貼上你的 Google Drive 分享連結。');}
 updateCaseAccess();
+
+
+function getVal(id){
+  const e=document.getElementById(id);
+  return e ? (e.value||'').trim() : '';
+}
+
+const RECORD_KEY='radiologySafetyLabRecords_v016';
+
+function getRecords(){
+  try{return JSON.parse(localStorage.getItem(RECORD_KEY))||{}}catch(e){return{}}
+}
+function saveRecords(records){
+  try{localStorage.setItem(RECORD_KEY,JSON.stringify(records))}catch(e){}
+}
+function saveCaseRecord(caseNum){
+  const records=getRecords();
+  if(caseNum===1){
+    records.case1={
+      whys:['c1why1','c1why2','c1why3','c1why4','c1why5'].map(getVal),
+      people:getVal('mmPeople'),
+      process:getVal('mmProcess'),
+      system:getVal('mmSystem'),
+      communication:getVal('mmCommunication'),
+      priority:getVal('mmPriority'),
+      action:selectedLabel('fix'),
+      reflection:[getVal('c1reflection1'),getVal('c1reflection2')].filter(Boolean).join('\n\n'),
+      after:getVal('sum1after'),
+      savedAt:new Date().toISOString()
+    };
+  }else if(caseNum===2){
+    records.case2={
+      whys:['c2why1','c2why2','c2why3','c2why4','c2why5'].map(getVal),
+      people:getVal('c2p'),
+      process:getVal('c2pr'),
+      system:getVal('c2sy'),
+      communication:getVal('c2co'),
+      priority:getVal('c2priority'),
+      action:selectedLabel('c2fix'),
+      reflection:getVal('c2priority'),
+      after:getVal('sum2after'),
+      savedAt:new Date().toISOString()
+    };
+  }else if(caseNum===3){
+    records.case3={
+      whys:['c3why1','c3why2','c3why3','c3why4','c3why5'].map(getVal),
+      people:getVal('c3p'),
+      process:getVal('c3pr'),
+      system:getVal('c3sy'),
+      communication:getVal('c3co'),
+      priority:getVal('c3priority'),
+      action:selectedLabel('c3fix'),
+      reflection:getVal('c3priority'),
+      after:getVal('sum3after'),
+      savedAt:new Date().toISOString()
+    };
+  }
+  saveRecords(records);
+  updateCaseAccess();
+}
+function populateSummaryFromRecord(caseNum, rec){
+  if(!rec)return;
+  const promptSets={
+    1:['為什麼病人已到 CT 才發現風險？','為什麼排程前沒有攔截？','為什麼流程會依賴人工確認？','為什麼重要資訊沒有在正確時間被呈現？','如果要降低再次發生機率，流程或系統應該改變什麼？'],
+    2:['為什麼可能懷孕的資訊直到準備檢查時才出現？','為什麼這項資訊沒有在更早的流程被取得？','為什麼安全確認可能會依賴病人主動提出？','有哪些流程、溝通或系統條件讓這件事有機會發生？','如果換一位病人或技術師，相同問題仍可能再次發生嗎？為什麼？'],
+    3:['從最直接的原因開始。','針對上一層答案再追問「為什麼？」','繼續往流程或工作條件追問。','是否存在系統或溝通層面的因素？','什麼因素讓相同事件仍有再次發生的可能？']
+  };
+  const wrap=document.getElementById('sum'+caseNum+'whys');
+  if(wrap){
+    wrap.innerHTML='';
+    (rec.whys||[]).forEach((val,i)=>{
+      const row=document.createElement('div');row.className='summary-why';
+      row.innerHTML='<b>WHY '+String(i+1).padStart(2,'0')+'</b><div><div class="summary-question"></div><div class="summary-response-label">MY RESPONSE</div><div class="summary-answer"></div></div>';
+      row.querySelector('.summary-question').textContent=(promptSets[caseNum]||[])[i]||'';
+      row.querySelector('.summary-answer').textContent=val||'—';wrap.appendChild(row);
+    });
+  }
+  setSummaryText('sum'+caseNum+'people',rec.people);
+  setSummaryText('sum'+caseNum+'process',rec.process);
+  setSummaryText('sum'+caseNum+'system',rec.system);
+  setSummaryText('sum'+caseNum+'communication',rec.communication);
+  setSummaryText('sum'+caseNum+'priority',rec.priority);
+  setSummaryText('sum'+caseNum+'action',rec.action);
+  setSummaryText('sum'+caseNum+'reflection',rec.reflection);
+  const after=document.getElementById('sum'+caseNum+'after');if(after)after.value=rec.after||'';
+}
+function reviewSavedCase(caseNum){
+  const records=getRecords();
+  const rec=records['case'+caseNum];
+  if(!rec){alert('目前沒有可回顧的學習摘要。');return;}
+  if(caseNum===1){
+    switchSection('case');
+    document.querySelectorAll('#case .stage').forEach(x=>x.classList.remove('active'));
+    document.getElementById('result').classList.add('active');
+  }else{
+    switchSection('case'+caseNum);
+    document.querySelectorAll('#case'+caseNum+' .stage').forEach(x=>x.classList.remove('active'));
+    document.getElementById('c'+caseNum+'result').classList.add('active');
+  }
+  populateSummaryFromRecord(caseNum,rec);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function clearCaseInputs(caseNum){
+  const section = caseNum===1 ? document.getElementById('case') : document.getElementById('case'+caseNum);
+  if(section){
+    section.querySelectorAll('input[type="text"], textarea').forEach(el=>el.value='');
+    section.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el=>el.checked=false);
+  }
+}
+function restartCase(caseNum){
+  if(!confirm('要重新練習這個案例嗎？此案例先前儲存的學習摘要會被清除，但不會影響其他已完成案例。'))return;
+  const records=getRecords(); delete records['case'+caseNum]; saveRecords(records);
+  const p=getProgress();
+  // Once the full learning path has been completed, all cases remain unlocked for review/practice.
+  const fullPath=p.case1&&p.case2&&p.case3;
+  if(!fullPath){
+    if(caseNum===1)p.case1=false;
+    if(caseNum===2)p.case2=false;
+    if(caseNum===3)p.case3=false;
+  }
+  saveProgress(p);
+  clearCaseInputs(caseNum);
+  updateCaseAccess();
+  if(caseNum===1)startCase(); else if(caseNum===2)startCase2(); else startCase3();
+}
+
+function setSummaryText(id, value){
+  const e=document.getElementById(id);
+  if(e)e.textContent=value || '—';
+}
+function fillWhys(caseNum, ids){
+  const wrap=document.getElementById('sum'+caseNum+'whys');
+  if(!wrap)return;
+  const prompts={
+    1:[
+      '為什麼病人已到 CT 才發現風險？',
+      '為什麼排程前沒有攔截？',
+      '為什麼流程會依賴人工確認？',
+      '為什麼重要資訊沒有在正確時間被呈現？',
+      '如果要降低再次發生機率，流程或系統應該改變什麼？'
+    ],
+    2:[
+      '為什麼可能懷孕的資訊直到準備檢查時才出現？',
+      '為什麼這項資訊沒有在更早的流程被取得？',
+      '為什麼安全確認可能會依賴病人主動提出？',
+      '有哪些流程、溝通或系統條件讓這件事有機會發生？',
+      '如果換一位病人或技術師，相同問題仍可能再次發生嗎？為什麼？'
+    ],
+    3:[
+      '從最直接的原因開始。',
+      '針對上一層答案再追問「為什麼？」',
+      '繼續往流程或工作條件追問。',
+      '是否存在系統或溝通層面的因素？',
+      '什麼因素讓相同事件仍有再次發生的可能？'
+    ]
+  };
+  wrap.innerHTML='';
+  ids.forEach((id,i)=>{
+    const row=document.createElement('div');
+    row.className='summary-why';
+    const val=getVal(id);
+    row.innerHTML='<b>WHY '+String(i+1).padStart(2,'0')+'</b><div><div class="summary-question"></div><div class="summary-response-label">MY RESPONSE</div><div class="summary-answer"></div></div>';
+    row.querySelector('.summary-question').textContent=(prompts[caseNum]||[])[i]||'';
+    row.querySelector('.summary-answer').textContent=val||'—';
+    wrap.appendChild(row);
+  });
+}
+function selectedLabel(name){
+  const checked=document.querySelector('input[name="'+name+'"]:checked');
+  return checked ? (checked.closest('label')?.innerText.trim() || checked.value) : '—';
+}
+function buildCase1Summary(){
+  fillWhys(1,['c1why1','c1why2','c1why3','c1why4','c1why5']);
+  setSummaryText('sum1people',getVal('mmPeople'));
+  setSummaryText('sum1process',getVal('mmProcess'));
+  setSummaryText('sum1system',getVal('mmSystem'));
+  setSummaryText('sum1communication',getVal('mmCommunication'));
+  setSummaryText('sum1priority',getVal('mmPriority'));
+  setSummaryText('sum1action',selectedLabel('fix'));
+  const r1=getVal('c1reflection1'), r2=getVal('c1reflection2');
+  setSummaryText('sum1reflection',[r1,r2].filter(Boolean).join('\n\n'));
+}
+function buildCase2Summary(){
+  fillWhys(2,['c2why1','c2why2','c2why3','c2why4','c2why5']);
+  setSummaryText('sum2people',getVal('c2p'));
+  setSummaryText('sum2process',getVal('c2pr'));
+  setSummaryText('sum2system',getVal('c2sy'));
+  setSummaryText('sum2communication',getVal('c2co'));
+  setSummaryText('sum2priority',getVal('c2priority'));
+  setSummaryText('sum2action',selectedLabel('c2fix'));
+  setSummaryText('sum2reflection',getVal('c2priority'));
+}
+function buildCase3Summary(){
+  fillWhys(3,['c3why1','c3why2','c3why3','c3why4','c3why5']);
+  setSummaryText('sum3people',getVal('c3p'));
+  setSummaryText('sum3process',getVal('c3pr'));
+  setSummaryText('sum3system',getVal('c3sy'));
+  setSummaryText('sum3communication',getVal('c3co'));
+  setSummaryText('sum3priority',getVal('c3priority'));
+  setSummaryText('sum3action',selectedLabel('c3fix'));
+  setSummaryText('sum3reflection',getVal('c3priority'));
+}
+
+function reviewMindMap(){
+  const ids=['mmPeople','mmProcess','mmSystem','mmCommunication'];
+  const filled=ids.filter(id=>{
+    const el=document.getElementById(id);
+    return el && el.value.trim().length>0;
+  }).length;
+  const priority=document.getElementById('mmPriority')?.value.trim() || '';
+  const fb=document.getElementById('mmFeedback');
+
+  if(filled<2){
+    if(fb){
+      fb.className='feedback show warn';
+      fb.innerHTML='<b>再從不同角度想一想。</b><br>至少嘗試從兩個面向整理 contributing factors，再進行比較。';
+    }
+    return;
+  }
+
+  if(!priority){
+    if(fb){
+      fb.className='feedback show warn';
+      fb.innerHTML='<b>你已整理出多個面向。</b><br>接著請選出你認為最重要的一項 contributing factor，並簡短說明原因。';
+    }
+    return;
+  }
+
+  if(fb){
+    fb.className='feedback show good';
+    fb.innerHTML='<b>Safety Mind Map 完成。</b><br>你已從 '+filled+' 個面向重新檢視事件。現在可以比較 Expert Perspective，再思考哪一種改善措施較能降低再次發生的可能。';
+  }
+
+  document.getElementById('mmExpert')?.classList.add('show');
+  document.getElementById('mindmapNext')?.classList.remove('hidden');
+
+  setTimeout(()=>{
+    document.getElementById('mmExpert')?.scrollIntoView({behavior:'smooth',block:'center'});
+  },50);
+}
+
 </script>
 </body>
 </html>
